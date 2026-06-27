@@ -1,8 +1,0 @@
-1:"$Sreact.fragment"
-2:I[23686,["/forio/_next/static/chunks/158myu8e_yme3.js","/forio/_next/static/chunks/3gu17jptsx-b7.js"],"DitheringShader"]
-3:I[56678,["/forio/_next/static/chunks/158myu8e_yme3.js","/forio/_next/static/chunks/3gu17jptsx-b7.js"],"default"]
-4:I[57545,["/forio/_next/static/chunks/158myu8e_yme3.js","/forio/_next/static/chunks/3gu17jptsx-b7.js"],"default"]
-5:I[97367,["/forio/_next/static/chunks/158myu8e_yme3.js"],"OutletBoundary"]
-6:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","div",null,{"className":"relative w-full min-h-screen overflow-hidden","children":[["$","div",null,{"className":"absolute inset-0 -z-10 pointer-events-none","children":["$","$L2",null,{"shape":"wave","type":"8x8","colorBack":"#fbfbfc","colorFront":"#2b2b2b","pxSize":3,"speed":0.6}]}],["$","main",null,{"className":"max-w-[1200px] mx-auto px-[20px]","children":[["$","$L3",null,{}],["$","$L4",null,{}]]}],["$","div",null,{"className":"fixed bottom-[40px] left-[30px] text-[10px] font-sans text-text-muted tracking-[3px] opacity-60 pointer-events-none","style":{"writingMode":"vertical-rl"},"children":["WAVIT STUDIO ",["$","br",null,{}]," EDITORIAL DESIGN"]}]]}],[["$","script","script-0",{"src":"/forio/_next/static/chunks/3gu17jptsx-b7.js","async":true}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"nKQQVTqD_Le4kuH_EFekw"}
-7:null
