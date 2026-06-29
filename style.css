@@ -72,6 +72,15 @@ body {
   color: var(--color-text-muted);
   font-weight: 300;
 }
+.email-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s ease;
+}
+.email-link:hover {
+  color: var(--color-text-main);
+}
 
 .social-icons {
   display: flex;
@@ -80,6 +89,7 @@ body {
 }
 
 .social-icon {
+  position: relative;
   display: flex; align-items: center; justify-content: center;
   width: 34px; height: 34px;
   border: 1px solid var(--color-border);
@@ -94,6 +104,29 @@ body {
   border-color: var(--color-text-main);
   transform: translateY(-2px);
   background: transparent;
+}
+.social-icon::after {
+  content: attr(data-title);
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translate(-50%, 5px);
+  background: var(--color-text-main);
+  color: var(--color-snow);
+  padding: 4px 8px;
+  font-size: 10px;
+  font-family: var(--font-sans);
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.social-icon:hover::after {
+  opacity: 1;
+  transform: translate(-50%, 0);
 }
 
 .profile-right {
@@ -356,5 +389,27 @@ body::before, body::after { display: none; }
   letter-spacing: 3px;
   writing-mode: vertical-rl; /* Signature Japanese editorial vertical text */
   opacity: 0.6;
+}
+
+/* Toast Notification for Clipboard Copy Feedback */
+.toast-notification {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background-color: var(--color-text-main);
+  color: var(--color-snow);
+  padding: 6px 14px;
+  border-radius: 0; /* Keep it editorial/minimalist */
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  z-index: 1000;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.3s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.3s ease;
+}
+.toast-notification.show {
+  transform: translate(-50%, -120%);
+  opacity: 1;
 }
 

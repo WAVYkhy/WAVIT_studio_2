@@ -226,6 +226,83 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // Toast notification helper
+  function showToast(message, x, y) {
+    let toast = document.getElementById('toastNotification');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'toastNotification';
+      toast.className = 'toast-notification';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    
+    if (typeof x === 'number' && typeof y === 'number') {
+      toast.style.left = `${x}px`;
+      toast.style.top = `${y}px`;
+    }
+    
+    toast.classList.add('show');
+    
+    // Reset layout transition state
+    setTimeout(() => {
+      toast.classList.remove('show');
+    }, 2000);
+  }
+
+  // 3. 이메일 클릭 및 복사 추적 + 클립보드 복사
+  const emailLink = document.querySelector('.email-link');
+  if (emailLink) {
+    emailLink.addEventListener('click', (e) => {
+      e.preventDefault(); // 기본 mailto 브라우저 반응 방지
+      const email = 'wkjnaver@gmail.com';
+      
+      const mouseX = e.pageX;
+      const mouseY = e.pageY;
+      
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('Copied!', mouseX, mouseY);
+        
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'click_contact_email', {
+            'email_address': email,
+            'copy_status': 'success'
+          });
+        }
+      }).catch(err => {
+        console.error('Failed to copy email:', err);
+        // 복사 실패 시 fallback으로 mailto 실행
+        window.location.href = `mailto:${email}`;
+        
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'click_contact_email', {
+            'email_address': email,
+            'copy_status': 'failed'
+          });
+        }
+      });
+    });
+
+    emailLink.addEventListener('copy', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'copy_contact_email', {
+          'email_address': 'wkjnaver@gmail.com'
+        });
+      }
+    });
+  }
+
+  // 4. 방문자 브라우저 언어 설정 추적
+  const userLang = navigator.language || navigator.userLanguage;
+  if (typeof window.gtag === 'function') {
+    window.gtag('set', 'user_properties', {
+      'user_language': userLang
+    });
+    window.gtag('event', 'user_language_config', {
+      'browser_language': userLang
+    });
+  }
 });
 
 // ==========================================
