@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3RKCSSGB4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-B3RKCSSGB4');
+  </script>
+
+  <script>
+    // 새로고침 감지 시 다른 랜덤 테마로 리다이렉트
+    if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+      const currentPage = window.location.pathname.split('/').pop() || 'pastel_retro_desktop.html';
+      window.location.replace('index.html?exclude=' + currentPage);
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAVIT_studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DotGothic16&family=Inter:wght@200&family=JetBrains+Mono:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="pastel_retro_desktop.css">
+  <link rel="stylesheet" href="transitions.css">
+</head>
+
+<body>
+  <!-- All Theme Transition Overlays -->
+  <!-- 1. Editorial Overlay -->
+  <div id="overlay-editorial" class="theme-transition transition-editorial hidden">
+    <div class="editorial-slice"></div><div class="editorial-slice"></div><div class="editorial-slice"></div><div class="editorial-slice"></div><div class="editorial-slice"></div>
+    <div class="editorial-logo">WAVIT_STUDIO</div>
+  </div>
+  <!-- 2. Brutalist Overlay -->
+  <div id="overlay-brutalist" class="theme-transition transition-brutalist hidden">
+    <div class="brutal-band b-1">
+      <div class="brutal-marquee">
+        <span>WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// </span>
+        <span>WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// </span>
+      </div>
+    </div>
+    <div class="brutal-band b-2">
+      <div class="brutal-marquee reverse">
+        <span>SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// </span>
+        <span>SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// </span>
+      </div>
+    </div>
+    <div class="brutal-band b-3">
+      <div class="brutal-marquee">
+        <span>ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// </span>
+        <span>ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// </span>
+      </div>
+    </div>
+  </div>
+  <!-- 3. Retro Overlay -->
+  <div id="overlay-retro" class="theme-transition transition-retro">
+    <div class="boot-screen">
+      <div class="boot-text">System Booting...</div>
+      <div class="boot-bar"><div class="boot-progress"></div></div>
+    </div>
+  </div>
+  <!-- Decorative Background elements -->
+  <div class="bg-decorations">
+    <div class="decor-cloud decor-1">☁️</div>
+    <div class="decor-cloud decor-2">✨</div>
+    <div class="decor-cloud decor-3">☁️</div>
+  </div>
+
+  <div class="desktop">
+    <!-- Left Column: Desktop Icons -->
+    <div class="desktop-icons">
+      <button class="icon-btn" id="randomThemeBtn">
+        <div class="icon-graphic">🔄</div>
+        <span class="icon-label">System<br>Switcher</span>
+      </button>
+      
+      <button class="icon-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">
+        <div class="icon-graphic">💲</div>
+        <span class="icon-label">Commission.txt</span>
+      </button>
+
+      <!-- Social Links as Icons -->
+      <a href="https://x.com/WAVIT_studio" target="_blank" class="icon-btn social-icon" aria-label="X logo">
+        <div class="icon-graphic">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"></path><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path></svg>
+        </div>
+        <span class="icon-label">Twitter.exe</span>
+      </a>
+
+      <a href="https://artmug.kr/index.php?channel=view&uid=58709" target="_blank" class="icon-btn social-icon" aria-label="Artmug">
+        <div class="icon-graphic"><img src="https://www.google.com/s2/favicons?domain=artmug.kr&sz=64" alt="Artmug"></div>
+        <span class="icon-label">Artmug.url</span>
+      </a>
+
+      <a href="https://meenit.co/commission/019e81f3-247a-74a9-ac4f-2191e2d85d45" target="_blank" class="icon-btn social-icon" aria-label="Meenit">
+        <div class="icon-graphic"><img src="https://www.google.com/s2/favicons?domain=meenit.co&sz=64" alt="Meenit"></div>
+        <span class="icon-label">Meenit.url</span>
+      </a>
+
+      <a href="https://crepe.cm/ko/@WAVIT_studio/lol0kv6" target="_blank" class="icon-btn social-icon" aria-label="Crepe">
+        <div class="icon-graphic"><img src="https://www.google.com/s2/favicons?domain=crepe.cm&sz=64" alt="Crepe"></div>
+        <span class="icon-label">Crepe.url</span>
+      </a>
+
+      <a href="https://melom.ing/s1fSW" target="_blank" class="icon-btn social-icon" aria-label="Meloming">
+        <div class="icon-graphic"><img src="https://www.google.com/s2/favicons?domain=melom.ing&sz=64" alt="Meloming"></div>
+        <span class="icon-label">Meloming.url</span>
+      </a>
+    </div>
+
+    <!-- Center/Right Area: Application Windows -->
+    <div class="windows-container">
+      
+      <!-- Profile / Broadcasting Window -->
+      <div class="os-window profile-window">
+        <div class="os-titlebar">
+          <div class="title-text">Broadcasting - WAVIT_studio</div>
+          <div class="title-controls">
+            <span class="btn-deco">_</span>
+            <span class="btn-deco">□</span>
+            <span class="btn-deco">X</span>
+          </div>
+        </div>
+        <div class="os-content profile-content">
+          <div class="profile-avatar-wrapper">
+            <div class="warning-deco">!</div>
+            <img src="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg" class="profile-img" alt="Profile">
+          </div>
+          <div class="bio-text">
+            <h2>WAVIT_studio</h2>
+            <p>MV Design / 映像デザイン</p>
+            <p>(JP, EN, KR)</p>
+            <br>
+            <div class="email-box">
+              <span>contact : </span>
+              <a href="#" class="email-link">wkjnaver@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PV Window -->
+      <div class="os-window gallery-window pv-window">
+        <div class="os-titlebar active-titlebar">
+          <div class="title-text">C:\Portfolio\Broadcasting</div>
+          <div class="title-controls">
+            <span class="btn-deco">_</span>
+            <span class="btn-deco">□</span>
+            <span class="btn-deco">X</span>
+          </div>
+        </div>
+        <div class="os-menubar">
+          <span>File</span><span>Edit</span><span>Tools</span>
+        </div>
+        <div class="os-content gallery-content">
+           <div class="gallery-grid" id="pvGrid">
+             <!-- JS will inject gallery items here -->
+           </div>
+        </div>
+        <div class="os-statusbar">
+          <span id="pvCount">0 objects</span>
+        </div>
+      </div>
+
+      <!-- Thumbnail Window -->
+      <div class="os-window gallery-window thumb-window">
+        <div class="os-titlebar">
+          <div class="title-text">C:\Portfolio\Image_Viewer</div>
+          <div class="title-controls">
+            <span class="btn-deco">_</span>
+            <span class="btn-deco">□</span>
+            <span class="btn-deco">X</span>
+          </div>
+        </div>
+        <div class="os-menubar">
+          <span>File</span><span>Edit</span><span>Image</span>
+        </div>
+        <div class="os-content gallery-content">
+           <div class="gallery-grid" id="thumbGrid">
+             <!-- JS will inject gallery items here -->
+           </div>
+        </div>
+        <div class="os-statusbar">
+          <span id="thumbCount">0 objects</span>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button class="start-btn">
+      <div class="start-icon">✧</div>
+      Start
+    </button>
+    
+    <div class="task-tabs">
+      <button class="task-tab" id="taskTabPv">
+         <span class="tab-icon">🎥</span> Broadcasting
+      </button>
+      <button class="task-tab" id="taskTabThumb">
+         <span class="tab-icon">🖼️</span> Image Viewer
+      </button>
+    </div>
+
+    <div class="tray">
+      <div class="tray-icons">
+        <span class="tray-icon-deco">🔊</span>
+        <span class="tray-icon-deco">🔒</span>
+      </div>
+      <div class="clock" id="sys-clock">10:08 PM</div>
+    </div>
+  </div>
+  
+  <!-- Alert Overlay (Toast replacement) -->
+  <div class="alert-overlay" id="alertBox">
+    <div class="os-window alert-window">
+       <div class="os-titlebar active-titlebar">
+          <div class="title-text">System Message</div>
+          <div class="title-controls">
+            <span class="btn-deco" id="closeAlertBox">X</span>
+          </div>
+       </div>
+       <div class="os-content alert-content">
+          <div class="alert-icon">i</div>
+          <p class="alert-message" id="alertMessage">EMAIL ADDRESS COPIED TO CLIPBOARD</p>
+       </div>
+       <div class="alert-footer">
+         <button class="os-btn" id="confirmAlert">OK</button>
+       </div>
+    </div>
+  </div>
+  <!-- Scripts -->
+  <script src="data.js"></script>
+  <script src="transitions.js"></script>
+  <script src="pastel_retro_desktop.js"></script>
+</body>
+</html>

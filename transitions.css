@@ -1,0 +1,80 @@
+/* Global Theme Transitions */
+.theme-transition {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  z-index: 9999; pointer-events: none;
+}
+
+/* 1. Editorial Transition */
+.transition-editorial { display: flex; background: transparent; }
+.editorial-slice {
+  flex: 1; height: 100%; background-color: #f4f4f4; border-right: 1px solid rgba(0,0,0,0.05);
+  transform-origin: top; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); transform: scaleY(1);
+}
+.transition-editorial.hidden .editorial-slice { transform: scaleY(0); }
+.editorial-slice:nth-child(1) { transition-delay: 0.0s; }
+.editorial-slice:nth-child(2) { transition-delay: 0.1s; }
+.editorial-slice:nth-child(3) { transition-delay: 0.2s; }
+.editorial-slice:nth-child(4) { transition-delay: 0.3s; }
+.editorial-slice:nth-child(5) { transition-delay: 0.4s; }
+.editorial-logo {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-family: 'Inter', sans-serif; font-weight: 200; font-size: 2rem; letter-spacing: 10px;
+  color: #333; opacity: 1; transition: opacity 0.4s;
+}
+.transition-editorial.hidden .editorial-logo { opacity: 0; }
+
+/* 2. Brutalist Transition (Trendy Kinetic Marquee) */
+.transition-brutalist {
+  display: flex; flex-direction: column; background: transparent;
+}
+.brutal-band {
+  flex: 1; display: flex; align-items: center; overflow: hidden;
+  transition: transform 0.6s cubic-bezier(0.85, 0, 0.15, 1);
+  transform: translateX(0);
+}
+.b-1 { background: black; color: white; }
+.b-2 { background: #33ff00; color: black; }
+.b-3 { background: black; color: white; }
+
+.transition-brutalist.hidden .b-1 { transform: translateX(-100%); }
+.transition-brutalist.hidden .b-2 { transform: translateX(100%); }
+.transition-brutalist.hidden .b-3 { transform: translateX(-100%); }
+
+/* Intro (revealing) */
+.transition-brutalist.hidden .b-1 { transition-delay: 0.0s; }
+.transition-brutalist.hidden .b-2 { transition-delay: 0.1s; }
+.transition-brutalist.hidden .b-3 { transition-delay: 0.2s; }
+
+/* Outro (covering) */
+.transition-brutalist:not(.hidden) .b-1 { transition-delay: 0.2s; }
+.transition-brutalist:not(.hidden) .b-2 { transition-delay: 0.1s; }
+.transition-brutalist:not(.hidden) .b-3 { transition-delay: 0.0s; }
+
+.brutal-marquee {
+  display: flex; width: max-content;
+  font-family: 'Space Grotesk', sans-serif; font-size: 8vw; font-weight: 700;
+  text-transform: uppercase; white-space: nowrap;
+}
+.brutal-marquee span {
+  padding: 0 1vw;
+  animation: brutalMarquee 6s linear infinite;
+}
+.brutal-marquee.reverse span {
+  animation: brutalMarqueeRev 6s linear infinite;
+}
+@keyframes brutalMarquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@keyframes brutalMarqueeRev { 0% { transform: translateX(-50%); } 100% { transform: translateX(0); } }
+
+/* 3. Retro Transition */
+.transition-retro {
+  background-color: #ebdced; display: flex; align-items: center; justify-content: center;
+  transition: transform 0.6s cubic-bezier(0.5, 0, 0.2, 1) 0.6s, opacity 0.4s 0.8s;
+  transform: translateY(0); opacity: 1;
+}
+.boot-screen { text-align: center; font-family: 'DotGothic16', sans-serif; }
+.boot-text { font-size: 1.5rem; color: #333; margin-bottom: 20px; }
+.boot-bar { width: 200px; height: 20px; border: 2px solid #333; padding: 2px; background: white; margin: 0 auto; }
+.boot-progress { width: 100%; height: 100%; background: #333; }
+.transition-retro.active .boot-progress { animation: bootLoad 0.8s linear forwards; }
+@keyframes bootLoad { 0% { width: 0%; } 50% { width: 70%; } 100% { width: 100%; } }
+.transition-retro.hidden { transform: translateY(-100%); opacity: 0; }

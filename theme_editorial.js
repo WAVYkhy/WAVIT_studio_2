@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 🌟 Brutalist 캐러셀 상태 업데이트 (수평 스크롤)
+  // 🌟 부채꼴 캐러셀 상태 업데이트 (요청하신 이미지와 똑같은 효과 연산)
   function updateCarousel() {
     // 닷(dot) 활성화 상태 변경
     const dots = document.querySelectorAll('.carousel-dot');
@@ -65,12 +65,40 @@ document.addEventListener('DOMContentLoaded', () => {
       dot.classList.toggle('active', idx === currentThumbIndex);
     });
 
-    // 해당 카드로 스크롤 이동
-    if (thumbCards[currentThumbIndex]) {
-      thumbCards[currentThumbIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
-    }
-  }
+    // 카드 위치, 각도, 크기 계산
+    thumbCards.forEach((card, index) => {
+      const offset = index - currentThumbIndex; // 현재 보이는 카드 기준 위치
+      const absOffset = Math.abs(offset);
 
+      // 첨부한 이미지와 똑같은 부채꼴 아치(Arch) 연산
+      const translateX = offset * 140; // 양 옆으로 벌어지는 간격
+      const translateY = absOffset * 15; // 멀어질수록 아래로 처짐 (둥근 아치 형태)
+      const rotateZ = offset * 6; // 멀어질수록 바깥쪽으로 기울어짐
+      const scale = 1 - (absOffset * 0.1); // 뒤로 갈수록 작아짐
+      const zIndex = 100 - absOffset; // 중앙 카드가 맨 위로
+
+      // 화면에서 너무 멀어지면 투명하게 숨김 (좌우 2개씩만 보이게)
+      if (absOffset > 2) {
+        card.style.opacity = '0';
+        card.style.pointerEvents = 'none';
+      } else {
+        card.style.opacity = '1';
+        card.style.pointerEvents = 'auto';
+      }
+
+      // 16:9 카드에 수학적으로 계산된 트랜스폼 적용
+      card.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scale(${scale}) rotate(${rotateZ}deg)`;
+      card.style.zIndex = zIndex;
+
+      // 배경에 있는 카드를 직접 클릭해도 중앙으로 오도록 설정
+      card.onclick = () => {
+        if (offset !== 0) {
+          currentThumbIndex = index;
+          updateCarousel();
+        }
+      };
+    });
+  }
 
   // 2. 필터 기능 및 레이아웃 스위치
   function filterGallery(category) {
@@ -276,19 +304,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 5. System Clock Logic for Brutalist Header
-  const sysClock = document.getElementById('sys-clock');
-  if (sysClock) {
-    function updateClock() {
-      const now = new Date();
-      const h = String(now.getHours()).padStart(2, '0');
-      const m = String(now.getMinutes()).padStart(2, '0');
-      const s = String(now.getSeconds()).padStart(2, '0');
-      sysClock.textContent = `${h}:${m}:${s}`;
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-  }
 });
 
 // ==========================================

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3RKCSSGB4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-B3RKCSSGB4');
+  </script>
+  <script>
+    // 새로고침 감지 시 다른 랜덤 테마로 리다이렉트
+    if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
+      const currentPage = window.location.pathname.split('/').pop() || 'theme_brutalist.html';
+      window.location.replace('index.html?exclude=' + currentPage);
+    }
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAVIT_studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&family=DotGothic16&family=Inter:wght@200&family=JetBrains+Mono:wght@400;700;900&family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme_brutalist.css">
+  <link rel="stylesheet" href="transitions.css">
+</head>
+
+<body class="brutalist-theme">
+  <!-- All Theme Transition Overlays -->
+  <!-- 1. Editorial Overlay -->
+  <div id="overlay-editorial" class="theme-transition transition-editorial hidden">
+    <div class="editorial-slice"></div><div class="editorial-slice"></div><div class="editorial-slice"></div><div class="editorial-slice"></div><div class="editorial-slice"></div>
+    <div class="editorial-logo">WAVIT_STUDIO</div>
+  </div>
+  <!-- 2. Brutalist Overlay -->
+  <div id="overlay-brutalist" class="theme-transition transition-brutalist">
+    <div class="brutal-band b-1">
+      <div class="brutal-marquee">
+        <span>WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// </span>
+        <span>WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// WAVIT STUDIO /// </span>
+      </div>
+    </div>
+    <div class="brutal-band b-2">
+      <div class="brutal-marquee reverse">
+        <span>SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// </span>
+        <span>SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// SYSTEM OVERRIDE /// </span>
+      </div>
+    </div>
+    <div class="brutal-band b-3">
+      <div class="brutal-marquee">
+        <span>ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// </span>
+        <span>ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// ACCESS GRANTED /// </span>
+      </div>
+    </div>
+  </div>
+  <!-- 3. Retro Overlay -->
+  <div id="overlay-retro" class="theme-transition transition-retro hidden">
+    <div class="boot-screen">
+      <div class="boot-text">System Booting...</div>
+      <div class="boot-bar"><div class="boot-progress"></div></div>
+    </div>
+  </div>
+  <div class="grid-background"></div>
+
+  <header class="sys-header">
+    <div class="sys-logo">WAVIT_</div>
+    <div class="sys-time">SYS.TIME<br><span id="sys-clock">00:00:00</span><br>KST</div>
+    <button class="btn-brutalist-small" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">COMMISSIONS ↗</button>
+  </header>
+
+  <main class="main-container">
+    <section class="profile-hero brutalist-box">
+      <div class="section-label">/01</div>
+      <div class="profile-content">
+        <h1 class="profile-name">WAVIT<br>STUDIO</h1>
+        <p class="profile-subtitle">FUNCTIONAL. DIGITAL. UNAPOLOGETIC.</p>
+        <p class="profile-bio">
+          MV Design / 映像デザイン<br>
+          Raw interfaces, structural layouts, and data-driven aesthetics for the digital age.
+        </p>
+        
+        <div class="sys-status-box">
+          <div class="status-row">
+            <span>CONTACT</span>
+            <a href="mailto:wkjnaver@gmail.com" class="email-link">wkjnaver@gmail.com</a>
+          </div>
+          <div class="status-row">
+            <span>LANGUAGES</span>
+            <span>JP, EN, KR</span>
+          </div>
+        </div>
+
+        <div class="social-icons brutalist-socials">
+          <a href="https://x.com/WAVIT_studio" target="_blank" class="social-icon" aria-label="X logo" data-title="X(트위터)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter">
+              <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+              <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+            </svg>
+          </a>
+          <a href="https://artmug.kr/index.php?channel=view&uid=58709" target="_blank" class="social-icon" aria-label="Artmug" data-title="아트머그">
+            <img src="https://www.google.com/s2/favicons?domain=artmug.kr&sz=64" alt="Artmug logo">
+          </a>
+          <a href="https://meenit.co/commission/019e81f3-247a-74a9-ac4f-2191e2d85d45" target="_blank" class="social-icon" aria-label="Meenit" data-title="미닛">
+            <img src="https://www.google.com/s2/favicons?domain=meenit.co&sz=64" alt="Meenit logo">
+          </a>
+          <a href="https://crepe.cm/ko/@WAVIT_studio/lol0kv6" target="_blank" class="social-icon" aria-label="Crepe" data-title="크레페">
+            <img src="https://www.google.com/s2/favicons?domain=crepe.cm&sz=64" alt="Crepe logo">
+          </a>
+          <a href="https://melom.ing/s1fSW" target="_blank" class="social-icon" aria-label="Meloming" data-title="멜로밍">
+            <img src="https://www.google.com/s2/favicons?domain=melom.ing&sz=64" alt="Meloming logo">
+          </a>
+        </div>
+      </div>
+      
+      <div class="profile-visual">
+        <div class="image-wrapper">
+          <img src="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg" alt="Profile" class="profile-avatar brutalist-image">
+        </div>
+        <div class="sys-coordinates">
+          X_36.1749<br>
+          Y_-86.7676<br>
+          Z_46.6827
+        </div>
+      </div>
+    </section>
+
+    <div class="portfolio-section brutalist-box">
+      <div class="section-label">/02 SELECTED WORK</div>
+      
+      <nav class="limelight-nav brutalist-nav">
+        <button class="limelight-btn active" data-target="pv">> PV</button>
+        <button class="limelight-btn" data-target="thumbnail">> THUMBNAIL</button>
+        <div class="nav-indicator" id="limelightIndicator"></div>
+      </nav>
+
+      <div class="gallery-wrapper">
+        <section class="gallery-grid" id="galleryGrid"></section>
+
+        <div class="carousel-controls brutalist-controls" id="carouselControls" style="display: none;">
+          <button class="carousel-btn" id="prevBtn" aria-label="Previous">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          <div class="carousel-dots" id="carouselDots"></div>
+          <button class="carousel-btn" id="nextBtn" aria-label="Next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="square">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="theme-switcher">
+    <button class="btn-brutalist" id="randomThemeBtn">JUMP TO RANDOM THEME ↗</button>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="transitions.js"></script>
+  <script src="theme_brutalist.js"></script>
+</body>
+
+</html>

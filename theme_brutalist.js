@@ -98,7 +98,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const cards = document.querySelectorAll('.card');
       cards.forEach(card => {
         if (card.dataset.category === 'thumbnail') {
-          card.style.display = 'flex';
+          card.style.display = 'block';
+          setTimeout(() => { card.style.opacity = '1'; }, 10);
         } else {
           card.style.display = 'none';
           card.style.opacity = '0';
@@ -289,6 +290,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setInterval(updateClock, 1000);
     updateClock();
   }
+
 });
 
 // ==========================================

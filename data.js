@@ -10,24 +10,24 @@ const portfolioData = [
   },
   {
     category: "pv",
-    title: "Motion Graphics Reel",
+    title: "눅붕-피차일반",
     mediaUrl: "https://www.youtube.com/embed/s5AKCJYuaw8?enablejsapi=1"
   },
   {
     category: "pv",
-    title: "VFX Breakdown",
+    title: "0ml-なんでもにうむ",
     mediaUrl: "https://www.youtube.com/embed/_CZxSnLBakA?enablejsapi=1"
   },
 
   // --- Thumbnail (이미지) ---
   {
     category: "thumbnail",
-    title: "Abstract Geometry",
+    title: "0ml-なんでもにうむ",
     mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17819360160_Re.jpg"
   },
   {
     category: "thumbnail",
-    title: "Neon Typography",
+    title: "해잉피-ただ君に晴れ",
     mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17821000950_Re.jpg"
   },
 

@@ -288,6 +288,7 @@ body.brutalist-theme {
 .brutalist-nav {
   display: flex;
   gap: 20px;
+  margin-top: 20px;
   margin-bottom: 40px;
   border-bottom: var(--border-thin);
   padding-bottom: 20px;
@@ -324,6 +325,7 @@ body.brutalist-theme {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
+  padding-top: 30px;
 }
 
 /* Brutalist Fan Layout (Horizontal Scroll / Grid) */
@@ -331,7 +333,7 @@ body.brutalist-theme {
   display: flex;
   overflow-x: auto;
   gap: 20px;
-  padding: 20px 0;
+  padding: 40px 0 20px 0;
   scrollbar-width: none; /* Firefox */
 }
 .layout-fan::-webkit-scrollbar {
@@ -455,6 +457,16 @@ body.brutalist-theme {
   opacity: 1;
 }
 
+/* Theme Switcher Button */
+.theme-switcher {
+  text-align: center;
+  padding: 40px 0 80px 0;
+}
+.theme-switcher .btn-brutalist {
+  padding: 15px 30px;
+  font-size: 14px;
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .profile-hero {
@@ -468,5 +480,38 @@ body.brutalist-theme {
   }
   .profile-name {
     font-size: 50px;
+  }
+  
+  /* Fix header squishing on mobile */
+  .sys-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 20px;
+    text-align: center;
+  }
+  .sys-time {
+    text-align: center;
+  }
+  .sys-header button {
+    width: 100%;
+  }
+
+  /* Fix grid and iframe overflow on small screens */
+  .brutalist-box {
+    padding: 20px; /* Reduce padding to give content more room */
+  }
+  
+  .brutalist-nav {
+    margin-top: 30px; /* Push tabs down further to clear section label */
+  }
+  
+  .gallery-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+  }
+  
+  .layout-fan .card {
+    flex: 0 0 260px; /* shrink brutalist slider cards on mobile */
   }
 }
