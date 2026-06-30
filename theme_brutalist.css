@@ -110,6 +110,30 @@ body.brutalist-theme {
   transform: translate(-2px, -2px);
 }
 
+.brutalist-commission-btn {
+  background: var(--color-accent-2);
+  color: #000000;
+  border: var(--border-thick);
+  box-shadow: 4px 4px 0px var(--color-border);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 15px 20px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: all 0.15s ease;
+  margin-top: 15px;
+}
+
+.brutalist-commission-btn:hover {
+  background: var(--color-accent-1);
+  color: var(--color-bg);
+  box-shadow: 0px 0px 0px var(--color-border);
+  transform: translate(4px, 4px);
+}
+
 /* Brutalist Box Base */
 .brutalist-box {
   border: var(--border-thin);
