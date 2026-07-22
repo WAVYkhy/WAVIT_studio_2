@@ -82,10 +82,74 @@ body {
   color: var(--color-text-main);
 }
 
+.email-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.email-promo-popup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  background: #f4f4f6;
+  color: #666666;
+  border: 1px solid #e0e0e4;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  font-family: var(--font-sans);
+  padding: 5px 8px 5px 10px;
+  border-radius: 4px;
+  white-space: normal;
+  word-break: keep-all;
+  text-align: center;
+  line-height: 1.35;
+  width: max-content;
+  max-width: min(300px, calc(100vw - 40px));
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  z-index: 50;
+  pointer-events: auto;
+  opacity: 0.95;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.promo-close-btn {
+  background: transparent;
+  border: none;
+  color: #888888;
+  font-size: 11px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.promo-close-btn:hover {
+  color: #222222;
+}
+
+.email-promo-popup::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #e0e0e4 transparent;
+}
+
 .social-icons {
   display: flex;
   gap: 10px;
-  margin-top: 5px;
+  margin-top: 24px;
 }
 
 .social-icon {
@@ -131,6 +195,10 @@ body {
 
 .profile-right {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
 }
 
 .btn-primary {
@@ -148,12 +216,23 @@ body {
   font-family: var(--font-sans);
   letter-spacing: 2px;
   transform: none;
+  text-align: center;
 }
 .btn-primary:hover {
   background: var(--color-text-main);
   color: var(--color-snow);
   transform: translateY(-2px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.btn-solid {
+  background: var(--color-text-main);
+  color: var(--color-snow);
+}
+.btn-solid:hover {
+  background: #4a4a4a;
+  border-color: #4a4a4a;
+  color: var(--color-snow);
 }
 
 .limelight-nav {
@@ -357,6 +436,14 @@ body {
     flex-direction: column;
     text-align: center;
     gap: 24px;
+  }
+  .profile-right {
+    align-items: center;
+    width: 100%;
+  }
+  .profile-right .btn-primary {
+    width: 100%;
+    max-width: 320px;
   }
   .profile-name {
     font-size: 48px;

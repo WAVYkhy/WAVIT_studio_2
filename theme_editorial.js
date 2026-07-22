@@ -200,8 +200,20 @@ document.addEventListener('DOMContentLoaded', () => {
     updateIndicator(currentActive);
   });
 
-  // 1. 커미션 단가표 클릭 추적
-  const commissionBtn = document.querySelector('.btn-primary');
+  // 1. 작업 일정 및 커미션 단가표 클릭 추적
+  const scheduleBtn = document.querySelector('.schedule-btn');
+  if (scheduleBtn) {
+    scheduleBtn.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'click_schedule', {
+          'event_category': 'Engagement',
+          'event_label': 'Work Schedule'
+        });
+      }
+    });
+  }
+
+  const commissionBtn = document.querySelector('.commission-btn');
   if (commissionBtn) {
     commissionBtn.addEventListener('click', () => {
       if (typeof window.gtag === 'function') {
@@ -293,8 +305,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 4. 방문자 브라우저 언어 설정 추적
-  const userLang = navigator.language || navigator.userLanguage;
+  // 4. 방문자 브라우저 언어 설정 추적 및 이메일 할인 프로모 문구 표시
+  const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  
+  const emailPromoEl = document.getElementById('emailPromo');
+  if (emailPromoEl) {
+    let promoMsg = 'Get 10,000 KRW off when requesting via email!';
+    if (userLang.startsWith('ko')) {
+      promoMsg = '메일로 의뢰 요청 시 10,000원 할인 이벤트를 진행중입니다.!';
+    } else if (userLang.startsWith('ja')) {
+      promoMsg = 'メールでのご依頼で10,000ウォン割引イベント実施中！';
+    }
+    emailPromoEl.textContent = promoMsg;
+  }
+
+  const closePromoBtn = document.getElementById('closePromoBtn');
+  const emailPromoPopup = document.getElementById('emailPromoPopup');
+  if (closePromoBtn && emailPromoPopup) {
+    closePromoBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      emailPromoPopup.style.display = 'none';
+    });
+  }
+
   if (typeof window.gtag === 'function') {
     window.gtag('set', 'user_properties', {
       'user_language': userLang

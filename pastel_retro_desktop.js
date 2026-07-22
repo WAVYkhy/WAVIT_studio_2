@@ -119,6 +119,41 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // 5. Schedule button click tracking & email promo text
+  const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+  
+  const emailPromoEl = document.getElementById('emailPromo');
+  if (emailPromoEl) {
+    let promoMsg = 'Get 10,000 KRW off when requesting via email!';
+    if (userLang.startsWith('ko')) {
+      promoMsg = '메일로 의뢰 요청 시 10,000원 할인 이벤트를 진행중입니다.!';
+    } else if (userLang.startsWith('ja')) {
+      promoMsg = 'メールでのご依頼で10,000ウォン割引イベント実施中！';
+    }
+    emailPromoEl.textContent = promoMsg;
+  }
+
+  const closePromoBtn = document.getElementById('closePromoBtn');
+  const emailPromoPopup = document.getElementById('emailPromoPopup');
+  if (closePromoBtn && emailPromoPopup) {
+    closePromoBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      emailPromoPopup.style.display = 'none';
+    });
+  }
+
+  const scheduleBtns = document.querySelectorAll('.schedule-btn, .schedule-icon-btn, .schedule-sticky-btn');
+  scheduleBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'click_schedule', {
+          'event_category': 'Engagement',
+          'event_label': 'Work Schedule'
+        });
+      }
+    });
+  });
+
   // 6. Simple Window Dragging (Desktop Only) - Bug Fixed
   const windows = document.querySelectorAll('.os-window:not(.alert-window)');
   let zIndexCounter = 50;

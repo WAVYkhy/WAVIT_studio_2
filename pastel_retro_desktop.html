@@ -77,6 +77,14 @@
         <span class="icon-label">System<br>Switcher</span>
       </button>
       
+      <button class="icon-btn schedule-icon-btn" onclick="window.open('https://schedule-tracker-five.vercel.app', '_blank')">
+        <div class="icon-graphic text-doc-icon">
+          📅
+          <span class="shortcut-arrow">↗</span>
+        </div>
+        <span class="icon-label">Schedule.exe</span>
+      </button>
+
       <button class="icon-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">
         <div class="icon-graphic text-doc-icon">
           📄
@@ -140,8 +148,15 @@
             <div class="email-box">
               <span>contact : </span>
               <a href="#" class="email-link">wkjnaver@gmail.com</a>
+              <span class="retro-email-promo-popup" id="emailPromoPopup">
+                <span id="emailPromo"></span>
+                <button type="button" class="retro-promo-close-btn" id="closePromoBtn" aria-label="Close">x</button>
+              </span>
             </div>
             <div class="commission-box">
+              <button class="os-btn schedule-btn" onclick="window.open('https://schedule-tracker-five.vercel.app', '_blank')">
+                <span class="btn-icon">📅</span> Work Schedule ↗
+              </button>
               <button class="os-btn commission-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">
                 <span class="btn-icon">💼</span> Commissions & Quote ↗
               </button>
@@ -162,6 +177,9 @@
           <div class="sticky-note-pin">📌</div>
           <h3 class="sticky-note-title">WORK STATUS</h3>
           <p class="sticky-note-body">Commissions & custom design quotes are currently open!</p>
+          <button class="sticky-btn schedule-sticky-btn" onclick="window.open('https://schedule-tracker-five.vercel.app', '_blank')" style="margin-bottom: 8px;">
+            📅 Work Schedule ↗
+          </button>
           <button class="sticky-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">
             Get a Quote ↗
           </button>

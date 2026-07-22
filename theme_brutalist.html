@@ -67,6 +67,7 @@
 
   <header class="sys-header">
     <div class="sys-logo">WAVIT_</div>
+    <button class="btn-brutalist-small schedule-header-btn" onclick="window.open('https://schedule-tracker-five.vercel.app', '_blank')">SYS.SCHEDULE ↗</button>
     <div class="sys-time">SYS.TIME<br><span id="sys-clock">00:00:00</span><br>KST</div>
   </header>
 
@@ -84,7 +85,13 @@
         <div class="sys-status-box">
           <div class="status-row">
             <span>CONTACT</span>
-            <a href="mailto:wkjnaver@gmail.com" class="email-link">wkjnaver@gmail.com</a>
+            <span class="email-wrapper">
+              <a href="mailto:wkjnaver@gmail.com" class="email-link">wkjnaver@gmail.com</a>
+              <span class="brutal-email-promo-popup" id="emailPromoPopup">
+                <span id="emailPromo"></span>
+                <button type="button" class="brutal-promo-close-btn" id="closePromoBtn" aria-label="Close">[X]</button>
+              </span>
+            </span>
           </div>
           <div class="status-row">
             <span>LANGUAGES</span>
@@ -92,9 +99,14 @@
           </div>
         </div>
 
-        <button class="brutalist-commission-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">
-          GET A QUOTE / COMMISSIONS ↗
-        </button>
+        <div class="brutalist-action-group">
+          <button class="brutalist-schedule-btn" onclick="window.open('https://schedule-tracker-five.vercel.app', '_blank')">
+            WORK SCHEDULE ↗
+          </button>
+          <button class="brutalist-commission-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">
+            GET A QUOTE / COMMISSIONS ↗
+          </button>
+        </div>
 
         <div class="social-icons brutalist-socials">
           <a href="https://x.com/WAVIT_studio" target="_blank" class="social-icon" aria-label="X logo" data-title="X(트위터)">

@@ -421,24 +421,93 @@ body {
   font-size: 12px;
 }
 .email-box {
+  position: relative;
   background: white;
   border: 1px solid var(--color-border-dark);
   padding: 5px;
   font-size: 12px;
+  width: 100%;
 }
 .email-link {
   color: blue;
   text-decoration: underline;
 }
 
+.retro-email-promo-popup {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 6px;
+  background: #f5f0f7;
+  border: 1px solid #b4abc2;
+  color: #5c526b;
+  padding: 5px 8px 5px 10px;
+  font-size: 10px;
+  font-weight: bold;
+  font-family: var(--font-retro);
+  white-space: normal;
+  word-break: keep-all;
+  text-align: center;
+  line-height: 1.35;
+  width: max-content;
+  max-width: min(300px, calc(100vw - 40px));
+  box-shadow: 2px 2px 0px rgba(110, 100, 125, 0.12);
+  z-index: 50;
+  pointer-events: auto;
+  border-radius: 2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.retro-promo-close-btn {
+  background: var(--color-window-bg);
+  color: var(--color-text);
+  border-top: 1px solid var(--color-border-light);
+  border-left: 1px solid var(--color-border-light);
+  border-right: 1px solid var(--color-border-dark);
+  border-bottom: 1px solid var(--color-border-dark);
+  font-family: var(--font-retro);
+  font-size: 9px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 13px;
+  height: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+}
+
+.retro-promo-close-btn:active {
+  border-top: 1px solid var(--color-border-dark);
+  border-left: 1px solid var(--color-border-dark);
+  border-right: 1px solid var(--color-border-light);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.retro-email-promo-popup::after {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 0 4px 4px;
+  border-style: solid;
+  border-color: #b4abc2 transparent;
+}
+
 .commission-box {
-  margin-top: 15px;
+  margin-top: 24px;
   width: 100%;
 }
 
-.commission-btn {
+.schedule-btn, .commission-btn {
   width: 100%;
   padding: 8px 12px;
+  margin-bottom: 8px;
   font-family: var(--font-retro);
   font-weight: bold;
   font-size: 12px;
@@ -457,12 +526,12 @@ body {
   transition: background 0.1s, transform 0.05s, box-shadow 0.05s;
 }
 
-.commission-btn:hover {
+.schedule-btn:hover, .commission-btn:hover {
   background: var(--color-titlebar-active);
   color: var(--color-title-text);
 }
 
-.commission-btn:active {
+.schedule-btn:active, .commission-btn:active {
   border-top: 1.5px solid var(--color-border-dark);
   border-left: 1.5px solid var(--color-border-dark);
   border-right: 1.5px solid var(--color-border-light);

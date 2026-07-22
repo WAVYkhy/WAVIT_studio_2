@@ -78,7 +78,17 @@
 
         <div class="profile-center">
           <h1 class="profile-name">WAVIT_studio</h1>
-          <p class="profile-bio">MV Design / 映像デザイン / contact : <a href="mailto:wkjnaver@gmail.com" class="email-link">wkjnaver@gmail.com</a> (JP, EN, KR)</p>
+          <p class="profile-bio">
+            MV Design / 映像デザイン / contact : 
+            <span class="email-wrapper">
+              <a href="mailto:wkjnaver@gmail.com" class="email-link">wkjnaver@gmail.com</a>
+              <span class="email-promo-popup" id="emailPromoPopup">
+                <span id="emailPromo"></span>
+                <button type="button" class="promo-close-btn" id="closePromoBtn" aria-label="Close">✕</button>
+              </span>
+            </span>
+            (JP, EN, KR)
+          </p>
           <div class="social-icons">
             <a href="https://x.com/WAVIT_studio" target="_blank" class="social-icon" aria-label="X logo" data-title="X(트위터)">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -109,8 +119,8 @@
         </div>
 
         <div class="profile-right">
-          <button class="btn-primary" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">View
-            Commission Prices</button>
+          <button class="btn-primary schedule-btn" onclick="window.open('https://schedule-tracker-five.vercel.app', '_blank')">Work Schedule ↗</button>
+          <button class="btn-primary commission-btn" onclick="window.open('https://wavykhy.github.io/WAVIT-quote/', '_blank')">View Commission Prices</button>
         </div>
       </section>
 
