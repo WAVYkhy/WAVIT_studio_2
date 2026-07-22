@@ -113,7 +113,7 @@ body {
   z-index: 50;
   pointer-events: auto;
   opacity: 0.95;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
 }

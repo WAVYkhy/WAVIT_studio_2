@@ -70,17 +70,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if(titlebar) titlebar.classList.add('active-titlebar');
   }
 
-  document.getElementById('taskTabPv').addEventListener('click', () => {
-    bringToFront(pvWin);
-    document.querySelectorAll('.task-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('taskTabPv').classList.add('active');
-  });
+  const taskTabPv = document.getElementById('taskTabPv');
+  if (taskTabPv) {
+    taskTabPv.addEventListener('click', () => {
+      bringToFront(pvWin);
+      document.querySelectorAll('.task-tab').forEach(t => t.classList.remove('active'));
+      taskTabPv.classList.add('active');
+    });
+  }
 
-  document.getElementById('taskTabThumb').addEventListener('click', () => {
-    bringToFront(thumbWin);
-    document.querySelectorAll('.task-tab').forEach(t => t.classList.remove('active'));
-    document.getElementById('taskTabThumb').classList.add('active');
-  });
+  const taskTabThumb = document.getElementById('taskTabThumb');
+  if (taskTabThumb) {
+    taskTabThumb.addEventListener('click', () => {
+      bringToFront(thumbWin);
+      document.querySelectorAll('.task-tab').forEach(t => t.classList.remove('active'));
+      taskTabThumb.classList.add('active');
+    });
+  }
 
   // 4. Retro Alert Box for Email Copy
   const emailLink = document.querySelector('.email-link');
@@ -90,16 +96,18 @@ document.addEventListener('DOMContentLoaded', () => {
   const confirmAlert = document.getElementById('confirmAlert');
 
   function showAlert(msg) {
-    alertMessage.innerHTML = msg; // Allows html like <br>
-    alertBox.classList.add('show');
+    if (alertMessage && alertBox) {
+      alertMessage.innerHTML = msg; // Allows html like <br>
+      alertBox.classList.add('show');
+    }
   }
 
   function hideAlert() {
-    alertBox.classList.remove('show');
+    if (alertBox) alertBox.classList.remove('show');
   }
 
-  closeAlertBox.addEventListener('click', hideAlert);
-  confirmAlert.addEventListener('click', hideAlert);
+  if (closeAlertBox) closeAlertBox.addEventListener('click', hideAlert);
+  if (confirmAlert) confirmAlert.addEventListener('click', hideAlert);
 
   if (emailLink) {
     emailLink.addEventListener('click', (e) => {

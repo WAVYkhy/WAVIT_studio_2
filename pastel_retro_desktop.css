@@ -462,7 +462,7 @@ body {
   z-index: 50;
   pointer-events: auto;
   border-radius: 2px;
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 6px;
 }
