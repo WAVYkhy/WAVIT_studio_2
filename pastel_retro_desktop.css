@@ -439,7 +439,7 @@ body {
   text-decoration: underline;
 }
 
-.retro-email-promo-popup {
+.retro-email-promo-popup, .email-box .retro-email-promo-popup {
   position: absolute;
   top: 100%;
   left: 50%;
