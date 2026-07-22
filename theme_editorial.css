@@ -85,6 +85,7 @@ body {
 .email-wrapper {
   position: relative;
   display: inline-block;
+  z-index: 20;
 }
 
 .email-promo-popup {
