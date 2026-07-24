@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       let mediaContent = '';
       if (item.category === 'pv') {
-        mediaContent = `<iframe id="yt-player-${index}" src="${item.mediaUrl}" title="${item.title || 'YouTube video'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        const thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
+        const targetUrl = item.videoUrl || item.mediaUrl;
+        mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="pv-link"><img src="${thumbSrc}" alt="${item.title || 'YouTube video'}"><div class="play-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></a>`;
       } else if (item.category === 'thumbnail') {
         mediaContent = `<img src="${item.mediaUrl}" alt="${item.title || 'Portfolio image'}">`;
       }

@@ -572,8 +572,33 @@ body {
   position: relative;
   box-shadow: 2px 2px 0px rgba(0,0,0,0.1);
 }
-.item-media img, .item-media iframe {
+.item-media img, .item-media iframe, .pv-link {
   width: 100%; height: 100%; object-fit: cover; border: none;
+}
+.pv-link {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+}
+.item-media .play-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+.pv-link:hover .play-overlay {
+  background: rgba(139, 128, 161, 0.65);
+  opacity: 1;
+}
+.item-media .play-overlay svg {
+  transition: transform 0.2s ease;
+}
+.pv-link:hover .play-overlay svg {
+  transform: scale(1.15);
 }
 .item-title {
   font-size: 11px;

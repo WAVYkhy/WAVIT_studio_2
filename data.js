@@ -6,17 +6,30 @@ const portfolioData = [
   {
     category: "pv",
     title: "해잉피-ただ君に晴れ",
-    mediaUrl: "https://www.youtube.com/embed/M4Ml6dvuRlQ?enablejsapi=1"
+    mediaUrl: "https://www.youtube.com/embed/M4Ml6dvuRlQ?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/M4Ml6dvuRlQ/hqdefault.jpg",
+    videoUrl: "https://youtu.be/M4Ml6dvuRlQ"
   },
   {
     category: "pv",
     title: "눅붕-피차일반",
-    mediaUrl: "https://www.youtube.com/embed/s5AKCJYuaw8?enablejsapi=1"
+    mediaUrl: "https://www.youtube.com/embed/s5AKCJYuaw8?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/s5AKCJYuaw8/hqdefault.jpg",
+    videoUrl: "https://youtu.be/s5AKCJYuaw8"
   },
   {
     category: "pv",
     title: "0ml-なんでもにうむ",
-    mediaUrl: "https://www.youtube.com/embed/_CZxSnLBakA?enablejsapi=1"
+    mediaUrl: "https://www.youtube.com/embed/_CZxSnLBakA?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/_CZxSnLBakA/hqdefault.jpg",
+    videoUrl: "https://youtu.be/_CZxSnLBakA"
+  },
+  {
+    category: "pv",
+    title: "눅붕&위령-PPPP",
+    mediaUrl: "https://www.youtube.com/embed/SqpiqGoxbAk?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/SqpiqGoxbAk/hqdefault.jpg",
+    videoUrl: "https://youtu.be/SqpiqGoxbAk"
   },
 
   // --- Thumbnail (이미지) ---
@@ -29,6 +42,11 @@ const portfolioData = [
     category: "thumbnail",
     title: "해잉피-ただ君に晴れ",
     mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17821000950_Re.jpg"
+  },
+  {
+    category: "thumbnail",
+    title: "눅붕&위령-PPPP",
+    mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17849045330_Re.jpg"
   },
 
 ];

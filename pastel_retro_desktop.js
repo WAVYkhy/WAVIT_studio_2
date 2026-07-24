@@ -30,7 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
       
       let mediaContent = '';
       if (item.category === 'pv') {
-        mediaContent = `<iframe src="${item.mediaUrl}" title="${item.title || 'Video'}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+        const thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
+        const targetUrl = item.videoUrl || item.mediaUrl;
+        mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="pv-link"><img src="${thumbSrc}" alt="${item.title || 'Video'}"><div class="play-overlay"><svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></a>`;
         el.innerHTML = `
           <div class="item-media">${mediaContent}</div>
           <div class="item-title">${item.title || 'Video_' + index}</div>

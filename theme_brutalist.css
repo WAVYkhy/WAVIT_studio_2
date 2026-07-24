@@ -472,12 +472,37 @@ body.brutalist-theme {
   border-bottom: var(--border-thin);
 }
 
-.media-container img, .media-container iframe {
+.media-container img, .media-container iframe, .pv-link {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: none;
   filter: grayscale(20%) contrast(110%);
+}
+.pv-link {
+  display: block;
+  position: absolute;
+  top: 0; left: 0;
+}
+.play-overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+}
+.pv-link:hover .play-overlay {
+  background: rgba(138, 43, 226, 0.6);
+  opacity: 1;
+}
+.play-overlay svg {
+  transition: transform 0.2s ease;
+}
+.pv-link:hover .play-overlay svg {
+  transform: scale(1.2);
 }
 
 .card:hover .media-container img {
