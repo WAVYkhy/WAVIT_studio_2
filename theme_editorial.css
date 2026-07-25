@@ -147,6 +147,10 @@ body {
   border-color: #e0e0e4 transparent;
 }
 
+.no-promo #emailPromoPopup {
+  display: none !important;
+}
+
 .social-icons {
   display: flex;
   gap: 10px;

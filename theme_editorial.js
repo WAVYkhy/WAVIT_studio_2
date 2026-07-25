@@ -311,7 +311,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const userLang = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
   
   const emailPromoEl = document.getElementById('emailPromo');
-  if (emailPromoEl) {
+  const emailPromoPopup = document.getElementById('emailPromoPopup');
+  const urlParams = new URLSearchParams(window.location.search);
+  const isNoPromo = document.documentElement.classList.contains('no-promo') || 
+                    urlParams.has('nopromo') || 
+                    urlParams.get('promo') === 'false' || 
+                    urlParams.get('promo') === '0' || 
+                    urlParams.get('promo') === 'off' || 
+                    urlParams.has('nopopup') || 
+                    urlParams.has('clean') || 
+                    urlParams.has('no_promo');
+
+  if (isNoPromo && emailPromoPopup) {
+    emailPromoPopup.style.display = 'none';
+  } else if (emailPromoEl) {
     let promoMsg = 'Get 10,000 KRW off when requesting via email!';
     if (userLang.startsWith('ko')) {
       promoMsg = '메일로 의뢰 요청 시 10,000원 할인 이벤트를 진행중입니다.!';
@@ -322,7 +335,6 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   const closePromoBtn = document.getElementById('closePromoBtn');
-  const emailPromoPopup = document.getElementById('emailPromoPopup');
   if (closePromoBtn && emailPromoPopup) {
     closePromoBtn.addEventListener('click', (e) => {
       e.stopPropagation();

@@ -505,6 +505,10 @@ body {
   border-color: #b4abc2 transparent;
 }
 
+.no-promo #emailPromoPopup {
+  display: none !important;
+}
+
 .schedule-btn, .commission-btn {
   width: 100%;
   padding: 8px 12px;

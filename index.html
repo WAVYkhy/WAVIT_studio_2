@@ -58,8 +58,11 @@
         });
       }
 
+      urlParams.delete('exclude');
+      const searchStr = urlParams.toString() ? ('?' + urlParams.toString()) : '';
+
       // 선택된 테마 페이지로 히스토리를 덮어쓰며 이동 (뒤로가기 시 무한 루프 방지)
-      window.location.replace(selectedTheme);
+      window.location.replace(selectedTheme + searchStr);
     });
   </script>
 </head>

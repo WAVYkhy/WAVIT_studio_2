@@ -275,6 +275,10 @@ body.brutalist-theme {
   border-color: #333333 transparent;
 }
 
+.no-promo #emailPromoPopup {
+  display: none !important;
+}
+
 .status-row:first-child {
   margin-bottom: 24px;
 }

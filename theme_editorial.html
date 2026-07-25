@@ -12,10 +12,20 @@
     gtag('config', 'G-B3RKCSSGB4');
   </script>
   <script>
-    // 새로고침 감지 시 다른 랜덤 테마로 리다이렉트
+    // 할인 팝업 숨김 파라미터 감지 및 루트 요소 클래스 부여 (FOUC 방지)
+    (function() {
+      const p = new URLSearchParams(window.location.search);
+      if (p.has('nopromo') || p.get('promo') === 'false' || p.get('promo') === '0' || p.get('promo') === 'off' || p.has('nopopup') || p.has('clean') || p.has('no_promo')) {
+        document.documentElement.classList.add('no-promo');
+      }
+    })();
+
+    // 새로고침 감지 시 다른 랜덤 테마로 리다이렉트 (쿼리 파라미터 유지)
     if (performance.getEntriesByType('navigation')[0]?.type === 'reload') {
-      const currentPage = window.location.pathname.split('/').pop() || 'theme_editorial.html';
-      window.location.replace('index.html?exclude=' + currentPage);
+      const currentPage = window.location.pathname.split('/').pop().split('?')[0] || 'theme_editorial.html';
+      const searchParams = new URLSearchParams(window.location.search);
+      searchParams.set('exclude', currentPage);
+      window.location.replace('index.html?' + searchParams.toString());
     }
   </script>
   <meta charset="UTF-8">

@@ -41,8 +41,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       
       // Wait for covering animation to finish, then navigate
+      const searchStr = window.location.search || '';
       setTimeout(() => {
-        window.location.href = targetPath;
+        window.location.href = targetPath + searchStr;
       }, 1000); // 1.0s wait
     });
   }
