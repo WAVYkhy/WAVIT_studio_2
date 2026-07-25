@@ -5,9 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WAVIT_studio</title>
   <script>
-    const searchParams = new URLSearchParams(window.location.search);
-    searchParams.set('nopromo', 'true');
-    window.location.replace('index.html?' + searchParams.toString());
+    window.location.replace('nopromo.html' + window.location.search);
   </script>
 </head>
 <body>

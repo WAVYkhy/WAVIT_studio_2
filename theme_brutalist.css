@@ -279,6 +279,10 @@ body.brutalist-theme {
   display: none !important;
 }
 
+.no-promo .social-icon:not([aria-label="X logo"]):not([href*="x.com"]):not([href*="twitter.com"]) {
+  display: none !important;
+}
+
 .status-row:first-child {
   margin-bottom: 24px;
 }
