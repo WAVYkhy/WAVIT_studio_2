@@ -19,6 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const article = document.createElement('article');
       article.className = 'card';
       article.dataset.category = item.category;
+      article.dataset.title = item.title || '';
 
       let mediaContent = '';
       if (item.category === 'pv') {
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const targetUrl = item.videoUrl || item.mediaUrl;
         mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="pv-link"><img src="${thumbSrc}" alt="${item.title || 'YouTube video'}"><div class="play-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></a>`;
       } else if (item.category === 'thumbnail') {
-        mediaContent = `<img src="${item.mediaUrl}" alt="${item.title || 'Portfolio image'}">`;
+        mediaContent = `<a href="${item.mediaUrl}" target="_blank" rel="noopener noreferrer" class="thumb-link"><img src="${item.mediaUrl}" alt="${item.title || 'Portfolio image'}"></a>`;
       }
 
       article.innerHTML = `<div class="media-container">${mediaContent}</div>`;

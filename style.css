@@ -356,14 +356,18 @@ body.brutalist-theme {
 }
 
 .card::before {
-  content: attr(data-category) " _ MODULE";
+  content: attr(data-title);
   position: absolute;
   top: -25px;
   left: 0;
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--color-text);
   text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
 }
 
 .media-container {
@@ -374,12 +378,15 @@ body.brutalist-theme {
   border-bottom: var(--border-thin);
 }
 
-.media-container img, .media-container iframe {
+.media-container img, .media-container iframe, .thumb-link {
   width: 100%;
   height: 100%;
   object-fit: cover;
   border: none;
   filter: grayscale(20%) contrast(110%);
+}
+.thumb-link {
+  display: block;
 }
 
 .card:hover .media-container img {

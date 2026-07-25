@@ -37,14 +37,25 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="item-media">${mediaContent}</div>
           <div class="item-title">${item.title || 'Video_' + index}</div>
         `;
+        el.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) {
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+          }
+        });
         pvGrid.appendChild(el);
         pCount++;
       } else if (item.category === 'thumbnail') {
-        mediaContent = `<img src="${item.mediaUrl}" alt="${item.title || 'Image'}">`;
+        const targetUrl = item.mediaUrl;
+        mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="thumb-link"><img src="${targetUrl}" alt="${item.title || 'Image'}"></a>`;
         el.innerHTML = `
           <div class="item-media">${mediaContent}</div>
           <div class="item-title">${item.title || 'Image_' + index}</div>
         `;
+        el.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) {
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+          }
+        });
         thumbGrid.appendChild(el);
         tCount++;
       }
