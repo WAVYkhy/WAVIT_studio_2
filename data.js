@@ -26,6 +26,13 @@ const portfolioData = [
   },
   {
     category: "pv",
+    title: "한이오-IO",
+    mediaUrl: "https://www.youtube.com/embed/dk6ztXNFmVw?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/dk6ztXNFmVw/hqdefault.jpg",
+    videoUrl: "https://youtu.be/dk6ztXNFmVw"
+  },
+  {
+    category: "pv",
     title: "눅붕&위령-PPPP",
     mediaUrl: "https://www.youtube.com/embed/SqpiqGoxbAk?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/SqpiqGoxbAk/hqdefault.jpg",
@@ -48,5 +55,9 @@ const portfolioData = [
     title: "눅붕&위령-PPPP",
     mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17849045330_Re.jpg"
   },
-
+  {
+    category: "thumbnail",
+    title: "한이오-IO",
+    mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17849861080_Re.jpg"
+  }
 ];
