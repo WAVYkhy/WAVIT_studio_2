@@ -43,21 +43,21 @@ const portfolioData = [
   {
     category: "thumbnail",
     title: "0ml-なんでもにうむ",
-    mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17819360160_Re.jpg"
+    mediaUrl: "https://img.youtube.com/vi/_CZxSnLBakA/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
     title: "해잉피-ただ君に晴れ",
-    mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17821000950_Re.jpg"
+    mediaUrl: "https://img.youtube.com/vi/M4Ml6dvuRlQ/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
     title: "눅붕&위령-PPPP",
-    mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17849045330_Re.jpg"
+    mediaUrl: "https://img.youtube.com/vi/SqpiqGoxbAk/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
     title: "한이오-IO",
-    mediaUrl: "https://artmugfile3.cafe24.com/image/up_img/detail/5/goods_58709/17849861080_Re.jpg"
+    mediaUrl: "https://img.youtube.com/vi/dk6ztXNFmVw/maxresdefault.jpg"
   }
 ];
