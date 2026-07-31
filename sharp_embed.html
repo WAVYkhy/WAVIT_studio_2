@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" class="no-promo">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3RKCSSGB4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-B3RKCSSGB4');
+  </script>
+  <script>
+    // 임베딩 전용: nopromo 클래스 항상 적용 (FOUC 방지)
+    document.documentElement.classList.add('no-promo');
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WAVIT_studio — Nordic Sharp (Embed Gallery)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme_sharp_edge.css?v=1.0.1">
+  <style>
+    /* Embed specific tweaks */
+    .sharp-bg-wrapper {
+      padding: 16px;
+      min-height: 100vh;
+    }
+    .sharp-nav-container {
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sharp-bg-wrapper">
+    <main class="main-container">
+
+      <!-- Category Filter Navigation (Top) -->
+      <div class="sharp-nav-container">
+        <div class="sharp-nav-tabs">
+          <button type="button" class="sharp-tab-btn active" data-target="pv">
+            <span>PV (VIDEO)</span>
+            <span class="sharp-tab-count" id="pvCount">0</span>
+          </button>
+          <button type="button" class="sharp-tab-btn" data-target="thumbnail">
+            <span>THUMBNAIL (IMAGE)</span>
+            <span class="sharp-tab-count" id="thumbCount">0</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Gallery Grid Section -->
+      <section class="gallery-grid" id="galleryGrid"></section>
+
+    </main>
+  </div>
+
+  <!-- Nordic Glass-Cut Lightbox Modal -->
+  <div class="sharp-modal" id="sharpModal" aria-hidden="true">
+    <div class="sharp-modal-container">
+      <div class="sharp-modal-header">
+        <div class="sharp-modal-title" id="modalTitle">MEDIA VIEWER</div>
+        <button type="button" class="sharp-modal-close" id="modalCloseBtn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="sharp-modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="theme_sharp_edge.js"></script>
+</body>
+
+</html>

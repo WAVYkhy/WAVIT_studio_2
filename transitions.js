@@ -3,7 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const overlays = {
     'theme_editorial.html': document.getElementById('overlay-editorial'),
     'theme_brutalist.html': document.getElementById('overlay-brutalist'),
-    'pastel_retro_desktop.html': document.getElementById('overlay-retro')
+    'pastel_retro_desktop.html': document.getElementById('overlay-retro'),
+    'theme_sharp_edge.html': document.getElementById('overlay-sharp-edge')
   };
 
   // 1. Intro Animation: Find the overlay matching the CURRENT page and un-hide it, then hide it so it animates away.
@@ -12,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentKey = 'theme_editorial.html';
   if (currentPath.includes('brutalist')) currentKey = 'theme_brutalist.html';
   if (currentPath.includes('pastel')) currentKey = 'pastel_retro_desktop.html';
+  if (currentPath.includes('sharp')) currentKey = 'theme_sharp_edge.html';
 
   const currentOverlay = overlays[currentKey];
   if (currentOverlay) {
@@ -29,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeBtn.addEventListener('click', (e) => {
       e.preventDefault();
       
-      const themes = ['theme_editorial.html', 'theme_brutalist.html', 'pastel_retro_desktop.html'];
+      const themes = ['theme_editorial.html', 'theme_brutalist.html', 'pastel_retro_desktop.html', 'theme_sharp_edge.html'];
       const otherThemes = themes.filter(t => !window.location.href.includes(t));
       const targetThemes = otherThemes.length > 0 ? otherThemes : themes;
       const targetPath = targetThemes[Math.floor(Math.random() * targetThemes.length)];

@@ -78,3 +78,46 @@
 .transition-retro.active .boot-progress { animation: bootLoad 0.8s linear forwards; }
 @keyframes bootLoad { 0% { width: 0%; } 50% { width: 70%; } 100% { width: 100%; } }
 .transition-retro.hidden { transform: translateY(-100%); opacity: 0; }
+
+/* 4. Sharp Edge Transition (Nordic Minimal Cut) */
+.transition-sharp-edge {
+  background-color: #09090B;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(1);
+  opacity: 1;
+}
+
+.sharp-overlay-box {
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 24px 40px;
+  background: #121215;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.sharp-overlay-line {
+  width: 40px;
+  height: 2px;
+  background: #ffffff;
+}
+
+.sharp-overlay-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: #ffffff;
+}
+
+.transition-sharp-edge.hidden {
+  opacity: 0;
+  transform: scale(1.04);
+}
+
