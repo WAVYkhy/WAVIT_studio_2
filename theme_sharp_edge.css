@@ -464,7 +464,7 @@ body {
 /* 6. Gallery Grid & Cards */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
   gap: 24px;
 }
 
@@ -741,6 +741,20 @@ body {
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  .sharp-bg-wrapper {
+    padding: 16px 10px 40px 10px;
+  }
+
+  .sharp-nav-tabs {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .sharp-tab-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+
   .profile-hero {
     padding: 20px;
     flex-direction: column;
