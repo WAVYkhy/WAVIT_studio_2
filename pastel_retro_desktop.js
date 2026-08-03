@@ -155,16 +155,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     urlParams.has('clean') || 
                     urlParams.has('no_promo');
 
-  if (isNoPromo && emailPromoPopup) {
+  // 이벤트 종료 - 프로모 팝업 숨김 처리
+  if (emailPromoPopup) {
     emailPromoPopup.style.display = 'none';
-  } else if (emailPromoEl) {
-    let promoMsg = 'Get 10,000 KRW off when requesting via email!';
-    if (userLang.startsWith('ko')) {
-      promoMsg = '메일로 의뢰 요청 시 10,000원 할인 이벤트를 진행중입니다.!';
-    } else if (userLang.startsWith('ja')) {
-      promoMsg = 'メールでのご依頼で10,000ウォン割引イベント実施中！';
-    }
-    emailPromoEl.textContent = promoMsg;
   }
 
   const closePromoBtn = document.getElementById('closePromoBtn');
