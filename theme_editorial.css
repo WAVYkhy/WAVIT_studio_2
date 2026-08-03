@@ -488,6 +488,12 @@ body {
   .social-icons {
     justify-content: center;
   }
+  .main-container::after {
+    display: none !important;
+  }
+  .media-container::after {
+    right: 5px;
+  }
 }
 
 .aurora-bg-wrapper {

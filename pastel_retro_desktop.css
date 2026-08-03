@@ -785,3 +785,34 @@ body {
   .desktop { overflow-y: auto; flex-direction: column; align-items: center; }
   .desktop-icons { flex-direction: row; flex-wrap: wrap; justify-content: center; width: 100%; }
 }
+
+@media (max-width: 768px) {
+  .os-content {
+    overflow: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .task-tab {
+    min-width: 0;
+    flex: 1;
+    padding: 0 4px;
+    font-size: 10px;
+    overflow: hidden;
+  }
+  .task-tab .tab-icon {
+    display: none;
+  }
+  .task-tab span:not(.tab-icon) {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .tray {
+    padding: 0 6px;
+    gap: 4px;
+  }
+  .tray-icons {
+    display: none;
+  }
+}

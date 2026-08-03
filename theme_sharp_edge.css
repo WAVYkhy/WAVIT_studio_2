@@ -770,7 +770,9 @@ body {
   }
 
   .theme-switcher-sharp {
-    bottom: 16px;
-    right: 16px;
+    position: static;
+    margin: 24px auto 40px auto;
+    display: flex;
+    justify-content: center;
   }
 }
