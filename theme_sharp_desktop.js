@@ -346,60 +346,81 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // 8-Direction Window Border Resizing Logic (Free Resizing)
+    // 8-Direction Window Border Resizing Logic (Free Resizing & Narrow Height Stretch)
     const sides = ['t', 'r', 'b', 'l', 'tl', 'tr', 'bl', 'br'];
     sides.forEach(dir => {
       const handle = document.createElement('div');
       handle.className = `resize-handle resize-handle-${dir}`;
+      if (dir === 'b') {
+        const indicator = document.createElement('div');
+        indicator.className = 'resize-indicator-bar';
+        handle.appendChild(indicator);
+      }
       win.appendChild(handle);
 
-      handle.addEventListener('mousedown', (e) => {
-        if (window.innerWidth <= 1024) return;
+      function startResize(e) {
+        const isNarrow = window.innerWidth <= 1024;
+        // On narrow screen (<=1024), allow bottom border / bottom-corner vertical height resizing!
+        if (isNarrow && !dir.includes('b')) return;
         if (win.classList.contains('maximized')) return;
+
+        if (e.cancelable && e.type === 'touchstart') {
+          e.preventDefault();
+        }
         e.stopPropagation();
-        e.preventDefault();
 
         win.classList.add('resizing');
         document.body.classList.add('is-resizing');
         bringToFront(win);
 
-        const startMouseX = e.clientX;
-        const startMouseY = e.clientY;
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+
+        const startMouseX = clientX;
+        const startMouseY = clientY;
         const rect = win.getBoundingClientRect();
         const startW = rect.width;
         const startH = rect.height;
         const startL = rect.left;
         const startT = rect.top;
         const minW = 240;
-        const minH = 160;
+        const minH = 200;
 
-        function onMouseMove(evt) {
-          const deltaX = evt.clientX - startMouseX;
-          const deltaY = evt.clientY - startMouseY;
+        function onMove(evt) {
+          const moveX = evt.touches ? evt.touches[0].clientX : evt.clientX;
+          const moveY = evt.touches ? evt.touches[0].clientY : evt.clientY;
 
-          if (dir.includes('r')) {
-            win.style.width = `${Math.max(minW, startW + deltaX)}px`;
-          }
+          const deltaX = moveX - startMouseX;
+          const deltaY = moveY - startMouseY;
+
           if (dir.includes('b')) {
-            win.style.height = `${Math.max(minH, startH + deltaY)}px`;
+            const newH = Math.max(minH, startH + deltaY);
+            win.style.setProperty('height', `${newH}px`, 'important');
+            win.classList.remove('expanded-height');
           }
-          if (dir.includes('l')) {
-            const possibleW = startW - deltaX;
-            if (possibleW >= minW) {
-              win.style.width = `${possibleW}px`;
-              win.style.left = `${startL + deltaX}px`;
+
+          if (!isNarrow) {
+            if (dir.includes('r')) {
+              win.style.width = `${Math.max(minW, startW + deltaX)}px`;
             }
-          }
-          if (dir.startsWith('t')) {
-            const possibleH = startH - deltaY;
-            if (possibleH >= minH) {
-              win.style.height = `${possibleH}px`;
-              win.style.top = `${startT + deltaY}px`;
+            if (dir.includes('l')) {
+              const possibleW = startW - deltaX;
+              if (possibleW >= minW) {
+                win.style.width = `${possibleW}px`;
+                win.style.left = `${startL + deltaX}px`;
+              }
+            }
+            if (dir.startsWith('t')) {
+              const possibleH = startH - deltaY;
+              if (possibleH >= minH) {
+                win.style.height = `${possibleH}px`;
+                win.style.top = `${startT + deltaY}px`;
+              }
             }
           }
         }
 
-        function onMouseUp() {
+        function onEnd() {
           win.classList.remove('resizing');
           document.body.classList.remove('is-resizing');
           lastCustomPositions[win.id] = {
@@ -408,13 +429,20 @@ document.addEventListener('DOMContentLoaded', () => {
             width: win.style.width,
             height: win.style.height
           };
-          document.removeEventListener('mousemove', onMouseMove);
-          document.removeEventListener('mouseup', onMouseUp);
+          document.removeEventListener('mousemove', onMove);
+          document.removeEventListener('mouseup', onEnd);
+          document.removeEventListener('touchmove', onMove);
+          document.removeEventListener('touchend', onEnd);
         }
 
-        document.addEventListener('mousemove', onMouseMove);
-        document.addEventListener('mouseup', onMouseUp);
-      });
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onEnd);
+        document.addEventListener('touchmove', onMove, { passive: false });
+        document.addEventListener('touchend', onEnd);
+      }
+
+      handle.addEventListener('mousedown', startResize);
+      handle.addEventListener('touchstart', startResize, { passive: false });
     });
 
   });
