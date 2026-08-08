@@ -716,6 +716,15 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   function renderGalleries() {
     if (typeof portfolioData === 'undefined') return;
 
@@ -727,7 +736,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const currentLang = window.i18n ? window.i18n.currentLanguage : 'ko';
 
-    portfolioData.forEach((item, index) => {
+    // Always shuffle portfolio items randomly for a fresh layout
+    const shuffledData = shuffleArray(portfolioData);
+
+    shuffledData.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'gallery-item';
 
