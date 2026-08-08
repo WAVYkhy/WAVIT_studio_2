@@ -3,8 +3,8 @@
    Combines Nordic Sharp Edge aesthetics with Desktop OS windowing system
    ========================================================================== */
 
-/* 1. Design Tokens (CSS Variables) — Light Mode Exclusive */
-:root, [data-theme="light"] {
+/* 1. Design Tokens (CSS Variables) */
+:root {
   --nordic-bg: #FAFAFA;
   --nordic-surface: #FFFFFF;
   --nordic-surface-subtle: #F4F4F5;
@@ -43,11 +43,44 @@
   --grid-color: rgba(0, 0, 0, 0.04);
 }
 
-/* Global Resets */
+/* Global Resets & Floating Overlay Scrollbar System */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.28) transparent;
+}
+
+/* WebKit (Chrome, Edge, Safari, Opera) Floating Overlay Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent !important;
+  border: none !important;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.28);
+  border-radius: var(--radius-sharp);
+  border: 1px solid transparent;
+  background-clip: padding-box;
+  transition: background-color 0.2s ease, width 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active {
+  background-color: rgba(0, 0, 0, 0.85);
+  border-width: 0px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
 }
 
 html, body {
@@ -390,23 +423,15 @@ body.is-dragging {
 /* Window Body Content Area */
 .os-window-body {
   flex: 1;
+  overflow-y: overlay;
   overflow-y: auto;
+  scrollbar-gutter: stable overlay;
   padding: 20px;
   background: var(--nordic-surface);
 }
 
-.os-window-body::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-}
-
 .os-window-body::-webkit-scrollbar-track {
-  background: var(--nordic-surface);
-}
-
-.os-window-body::-webkit-scrollbar-thumb {
-  background: var(--nordic-border);
-  border-radius: var(--radius-sharp);
+  background: transparent !important;
 }
 
 /* Specific Window Sizes & Positions */
