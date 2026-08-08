@@ -578,11 +578,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!isMobile) {
     centerPortfolioWindow();
+  } else {
+    windowDefs.forEach(def => {
+      const win = document.getElementById(def.id);
+      if (win) {
+        win.style.left = '';
+        win.style.top = '';
+        win.style.width = '';
+        win.style.height = '';
+      }
+    });
   }
 
   window.addEventListener('resize', () => {
     if (window.innerWidth > 1024) {
       centerPortfolioWindow();
+    } else {
+      windowDefs.forEach(def => {
+        const win = document.getElementById(def.id);
+        if (win) {
+          win.style.left = '';
+          win.style.top = '';
+          win.style.width = '';
+          win.style.height = '';
+        }
+      });
     }
   });
 
