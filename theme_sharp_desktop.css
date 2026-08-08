@@ -121,7 +121,7 @@ html, body {
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: opacity 0.5s ease, visibility 0.5s ease;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s ease;
 }
 
 .boot-overlay.hidden {
@@ -1486,6 +1486,186 @@ body.is-dragging {
 .portfolio-tab-btn:active {
   transform: translateY(1px);
 }
+
+/* ==========================================================================
+   Language Selector System (i18n UI)
+   ========================================================================== */
+.lang-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+  background: rgba(0, 0, 0, 0.05);
+  padding: 2px;
+  border-radius: var(--radius-sharp);
+  border: 1px solid var(--nordic-border);
+}
+
+.lang-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 6px;
+  border-radius: var(--radius-sharp);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1;
+}
+
+.lang-btn:hover {
+  color: var(--text-primary);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.lang-btn.active {
+  background: var(--accent-surface);
+  color: var(--accent-text);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* ==========================================================================
+   Mobile Top Floating Language Switcher Pill
+   ========================================================================== */
+.mobile-top-lang-pill {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .mobile-top-lang-pill {
+    display: block;
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 99999;
+  }
+
+  .mobile-lang-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--nordic-glass);
+    border: 1px solid var(--nordic-border);
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    color: var(--text-primary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+
+  .mobile-lang-pill-btn:active {
+    transform: scale(0.96);
+  }
+
+  .pill-arrow {
+    font-size: 9px;
+    color: var(--text-muted);
+    transition: transform 0.2s ease;
+  }
+
+  .mobile-top-lang-pill.active .pill-arrow {
+    transform: rotate(180deg);
+  }
+
+  .mobile-lang-dropdown {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 130px;
+    background: var(--nordic-surface);
+    border: 1px solid var(--nordic-border);
+    border-radius: var(--radius-sharp);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-6px);
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .mobile-top-lang-pill.active .mobile-lang-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .lang-dropdown-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 10px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: transparent;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    transition: background 0.12s ease;
+  }
+
+  .lang-dropdown-item:hover,
+  .lang-dropdown-item.active {
+    background: var(--nordic-surface-subtle);
+    color: var(--text-primary);
+    font-weight: 700;
+  }
+
+  .lang-dropdown-item.active::after {
+    content: '✓';
+    margin-left: 4px;
+    font-weight: 700;
+  }
+
+  .lang-code-tag {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+
+  .os-window {
+    touch-action: pan-y;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  }
+
+  .os-titlebar {
+    touch-action: none;
+    padding-top: 4px;
+  }
+
+  .mobile-bottom-nav {
+    padding-bottom: calc(env(safe-area-inset-bottom, 0px) + 8px) !important;
+  }
+
+  .mobile-nav-btn {
+    min-height: 44px;
+  }
+
+  .win-control-btn {
+    min-width: 36px;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+
+
 
 
 

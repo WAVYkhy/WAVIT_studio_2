@@ -1,11 +1,44 @@
 document.addEventListener('DOMContentLoaded', () => {
   
   // ==========================================
-  // 1. Boot Screen Animation
+  // 1. Boot Screen Animation & Re-boot Transition
   // ==========================================
   const bootOverlay = document.getElementById('bootOverlay');
   const bootProgressBar = document.getElementById('bootProgressBar');
 
+  window.triggerBootTransition = function(callback) {
+    if (!bootOverlay) {
+      if (typeof callback === 'function') callback();
+      return;
+    }
+
+    // 1. Reset progress bar & instantly trigger opaque screen transition
+    if (bootProgressBar) {
+      bootProgressBar.style.transition = 'none';
+      bootProgressBar.style.width = '0%';
+    }
+    
+    bootOverlay.classList.remove('hidden');
+
+    // 2. Wait 220ms for screen to become 100% SOLID OPAQUE before updating DOM text
+    setTimeout(() => {
+      // Screen is 100% opaque now. Update text & DOM completely hidden behind curtain!
+      if (typeof callback === 'function') callback();
+
+      // Start filling progress bar
+      if (bootProgressBar) {
+        bootProgressBar.style.transition = 'width 0.4s cubic-bezier(0.16, 1, 0.3, 1)';
+        bootProgressBar.style.width = '100%';
+      }
+    }, 220);
+
+    // 3. Reveal updated screen after progress bar animation completes
+    setTimeout(() => {
+      bootOverlay.classList.add('hidden');
+    }, 700);
+  };
+
+  // Initial Boot Animation on page load
   if (bootProgressBar) {
     setTimeout(() => {
       bootProgressBar.style.width = '100%';
@@ -249,10 +282,9 @@ document.addEventListener('DOMContentLoaded', () => {
         win.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 50);
     }
+
+    updateMobileBackdrop();
   }
-
-
-
 
   // Minimize Window
   function minimizeWindow(win) {
@@ -260,6 +292,7 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.add('minimized');
     win.classList.remove('active-win');
     updateTaskbarTabs();
+    updateMobileBackdrop();
   }
 
   // Maximize / Restore Window
@@ -275,7 +308,9 @@ document.addEventListener('DOMContentLoaded', () => {
     win.classList.add('hidden-win');
     win.classList.remove('active-win', 'maximized');
     updateTaskbarTabs();
+    updateMobileBackdrop();
   }
+
 
   // Bind Titlebar Controls & Window Mousedown
   windows.forEach(win => {
@@ -690,9 +725,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (pvGrid) pvGrid.innerHTML = '';
     if (thumbGrid) thumbGrid.innerHTML = '';
 
+    const currentLang = window.i18n ? window.i18n.currentLanguage : 'ko';
+
     portfolioData.forEach((item, index) => {
       const card = document.createElement('div');
       card.className = 'gallery-item';
+
+      const localizedTitle = typeof getLocalizedTitle === 'function' 
+        ? getLocalizedTitle(item, currentLang) 
+        : (item.title || '');
 
       if (item.category === 'pv' && pvGrid) {
         const videoId = item.mediaUrl.match(/embed\/([^?]+)/) ? item.mediaUrl.match(/embed\/([^?]+)/)[1] : '';
@@ -700,21 +741,28 @@ document.addEventListener('DOMContentLoaded', () => {
         
         card.innerHTML = `
           <div class="item-media">
-            <img src="${thumbSrc}" alt="${item.title || 'Video'}" loading="lazy">
+            <img src="${thumbSrc}" alt="${localizedTitle || 'Video'}" loading="lazy">
             <div class="play-overlay">
               <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
           </div>
-          <div class="item-title">${item.title || 'PV_WORK_' + (index + 1)}</div>
+          <div class="item-title">${localizedTitle || 'PV_WORK_' + (index + 1)}</div>
         `;
 
         card.addEventListener('click', () => {
           document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
           card.classList.add('selected');
           const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
-          openModal(item.title || 'PV WORK', `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>`);
+          const watchText = window.i18n ? window.i18n.get('portfolio.watchYoutube') : 'WATCH ON YOUTUBE ↗';
+          openModal(
+            localizedTitle || 'PV WORK', 
+            `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+             <div class="modal-footer-link" style="margin-top: 12px; text-align: right;">
+               <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 700; font-family: var(--font-mono);">${watchText}</a>
+             </div>`
+          );
         });
 
         pvGrid.appendChild(card);
@@ -722,15 +770,15 @@ document.addEventListener('DOMContentLoaded', () => {
       } else if (item.category === 'thumbnail' && thumbGrid) {
         card.innerHTML = `
           <div class="item-media">
-            <img src="${item.mediaUrl}" alt="${item.title || 'Thumbnail'}" loading="lazy">
+            <img src="${item.mediaUrl}" alt="${localizedTitle || 'Thumbnail'}" loading="lazy">
           </div>
-          <div class="item-title">${item.title || 'GRAPHIC_WORK_' + (index + 1)}</div>
+          <div class="item-title">${localizedTitle || 'GRAPHIC_WORK_' + (index + 1)}</div>
         `;
 
         card.addEventListener('click', () => {
           document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
           card.classList.add('selected');
-          openModal(item.title || 'GRAPHIC WORK', `<img src="${item.mediaUrl}" alt="${item.title}">`);
+          openModal(localizedTitle || 'GRAPHIC WORK', `<img src="${item.mediaUrl}" alt="${localizedTitle}">`);
         });
 
         thumbGrid.appendChild(card);
@@ -738,11 +786,25 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    if (pvCountTag) pvCountTag.textContent = `${pCount} OBJECT(S)`;
-    if (thumbCountTag) thumbCountTag.textContent = `${tCount} OBJECT(S)`;
+    if (pvCountTag) {
+      pvCountTag.textContent = window.i18n 
+        ? window.i18n.get('portfolio.countTag', { count: pCount }) 
+        : `${pCount} OBJECT(S)`;
+    }
+    if (thumbCountTag) {
+      thumbCountTag.textContent = window.i18n 
+        ? window.i18n.get('portfolio.countTag', { count: tCount }) 
+        : `${tCount} OBJECT(S)`;
+    }
   }
 
   renderGalleries();
+
+  if (window.i18n) {
+    window.i18n.onLanguageChange(() => {
+      renderGalleries();
+    });
+  }
 
   // ==========================================
   // 6. Copy Email & Alert Notification
@@ -771,7 +833,8 @@ document.addEventListener('DOMContentLoaded', () => {
     copyEmailBtn.addEventListener('click', () => {
       const email = 'wkjnaver@gmail.com';
       navigator.clipboard.writeText(email).then(() => {
-        showAlert('EMAIL COPIED TO CLIPBOARD.<br>Inquiries: wkjnaver@gmail.com');
+        const copiedMsg = window.i18n ? window.i18n.get('profile.copiedEmail') : 'EMAIL COPIED TO CLIPBOARD.';
+        showAlert(`${copiedMsg}<br><span style="font-size:12px; color:var(--text-muted);">Inquiries: ${email}</span>`);
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'click_contact_email', { 'email_address': email });
         }
@@ -781,4 +844,141 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // ==========================================
+  // 7. Mobile Touch & Swipe Gesture Engine
+  // ==========================================
+  // Bind Swipe Down to Dismiss on Each OS Window Titlebar for Mobile
+  windows.forEach(win => {
+    const titlebar = win.querySelector('.os-titlebar');
+    const touchTargets = [titlebar].filter(Boolean);
+
+    touchTargets.forEach(target => {
+      let touchStartY = 0;
+      let touchStartX = 0;
+      let currentDeltaY = 0;
+      let isSwiping = false;
+      let startTime = 0;
+
+      target.addEventListener('touchstart', (e) => {
+        if (window.innerWidth > 768) return;
+        if (e.target.closest('.win-control-btn')) return;
+
+        const touch = e.touches[0];
+        touchStartY = touch.clientY;
+        touchStartX = touch.clientX;
+        currentDeltaY = 0;
+        isSwiping = false;
+        startTime = Date.now();
+        win.style.transition = 'none';
+      }, { passive: true });
+
+      target.addEventListener('touchmove', (e) => {
+        if (window.innerWidth > 768) return;
+        const touch = e.touches[0];
+        const deltaY = touch.clientY - touchStartY;
+        const deltaX = touch.clientX - touchStartX;
+
+        // Allow drag down only
+        if (deltaY > 0 && Math.abs(deltaY) > Math.abs(deltaX)) {
+          isSwiping = true;
+          currentDeltaY = deltaY;
+          win.style.transform = `translateY(${deltaY}px)`;
+        }
+      }, { passive: true });
+
+      target.addEventListener('touchend', () => {
+        if (window.innerWidth > 768 || !isSwiping) return;
+
+        const duration = Date.now() - startTime;
+        const velocity = currentDeltaY / (duration || 1);
+        const threshold = 120; // px threshold
+
+        win.style.transition = 'transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease';
+
+        if (currentDeltaY > threshold || velocity > 0.5) {
+          // Swipe Close Action
+          win.style.transform = `translateY(100vh)`;
+          win.style.opacity = '0';
+          
+          if (navigator.vibrate) navigator.vibrate(12);
+
+          setTimeout(() => {
+            closeWindow(win);
+            win.style.removeProperty('transform');
+            win.style.removeProperty('opacity');
+          }, 250);
+        } else {
+          // Rubber-band snapping recovery
+          win.style.transform = 'translateY(0)';
+        }
+        isSwiping = false;
+      });
+    });
+  });
+
+  // Horizontal Swipe for Portfolio Tabs (PV Video ↔ Thumbnail)
+  const portfolioWindow = document.getElementById('win-portfolio');
+  if (portfolioWindow) {
+    let pStartX = 0;
+    let pStartY = 0;
+
+    portfolioWindow.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 768) return;
+      pStartX = e.touches[0].clientX;
+      pStartY = e.touches[0].clientY;
+    }, { passive: true });
+
+    portfolioWindow.addEventListener('touchend', (e) => {
+      if (window.innerWidth > 768) return;
+      const endX = e.changedTouches[0].clientX;
+      const endY = e.changedTouches[0].clientY;
+      const deltaX = endX - pStartX;
+      const deltaY = endY - pStartY;
+
+      if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+        if (deltaX < 0) {
+          // Swipe Left -> Next Tab (Thumbnail)
+          const thumbBtn = portfolioWindow.querySelector('.portfolio-tab-btn[data-tab="thumb"]');
+          if (thumbBtn) thumbBtn.click();
+        } else {
+          // Swipe Right -> Prev Tab (PV Video)
+          const pvBtn = portfolioWindow.querySelector('.portfolio-tab-btn[data-tab="pv"]');
+          if (pvBtn) pvBtn.click();
+        }
+        if (navigator.vibrate) navigator.vibrate(8);
+      }
+    });
+  }
+
+  // Mobile Floating Top Language Switcher Pill Handler
+  const mobileTopLangPill = document.getElementById('mobileTopLangPill');
+  const mobileLangPillBtn = document.getElementById('mobileLangPillBtn');
+  const mobileLangDropdown = document.getElementById('mobileLangDropdown');
+
+  if (mobileLangPillBtn && mobileTopLangPill) {
+    mobileLangPillBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      mobileTopLangPill.classList.toggle('active');
+    });
+
+    if (mobileLangDropdown) {
+      mobileLangDropdown.addEventListener('click', (e) => {
+        const item = e.target.closest('.lang-dropdown-item');
+        if (item) {
+          mobileTopLangPill.classList.remove('active');
+        }
+      });
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!mobileTopLangPill.contains(e.target)) {
+        mobileTopLangPill.classList.remove('active');
+      }
+    });
+  }
+
 });
+
+
+
+
