@@ -51,9 +51,9 @@ const portfolioData = [
   {
     category: "pv",
     title: {
-      ko: "0ml - 水族館に行きたい (수족관에 가고 싶어)",
+      ko: "0ml - 水族館に行きたい",
       ja: "0ml - 水族館に行きたい",
-      en: "0ml - Want to go to the Aquarium"
+      en: "0ml - 水族館に行きたい"
     },
     mediaUrl: "https://www.youtube.com/embed/zRPeS4TlAJE?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/hqdefault.jpg",
@@ -75,9 +75,9 @@ const portfolioData = [
   {
     category: "thumbnail",
     title: {
-      ko: "0ml - 水族館に行きたい (수족관에 가고 싶어)",
+      ko: "0ml - 水族館に行きたい",
       ja: "0ml - 水族館に行きたい",
-      en: "0ml - Want to go to the Aquarium"
+      en: "0ml - 水族館に行きたい"
     },
     mediaUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/maxresdefault.jpg"
   },
