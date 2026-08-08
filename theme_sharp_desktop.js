@@ -62,6 +62,40 @@ document.addEventListener('DOMContentLoaded', () => {
   const windows = document.querySelectorAll('.os-window');
   const taskTabsContainer = document.getElementById('taskTabsContainer');
 
+  // Center Portfolio Window proportionally to screen resolution (FHD, QHD, 4K)
+  function centerPortfolioWindow(targetWin) {
+    const win = targetWin || document.getElementById('win-portfolio');
+    if (!win) return;
+    if (window.innerWidth <= 1024) return; // Desktop only
+
+    // Restore last user-dragged position if user previously moved/resized this window
+    if (lastCustomPositions[win.id]) {
+      const pos = lastCustomPositions[win.id];
+      if (pos.left) win.style.left = pos.left;
+      if (pos.top) win.style.top = pos.top;
+      if (pos.width) win.style.width = pos.width;
+      if (pos.height) win.style.height = pos.height;
+      return;
+    }
+
+    const desktopArea = document.querySelector('.desktop-area');
+    const areaWidth = desktopArea ? desktopArea.clientWidth : window.innerWidth;
+    const areaHeight = desktopArea ? desktopArea.clientHeight : (window.innerHeight - 48);
+
+    // Dynamic width & height proportional to resolution
+    // FHD (1920): ~1114x700px, QHD (2560): ~1485x946px, 4K (3840): ~2000x1300px
+    const targetW = Math.min(2000, Math.max(760, Math.round(areaWidth * 0.58)));
+    const targetH = Math.min(1300, Math.max(520, Math.round(areaHeight * 0.68)));
+
+    const left = Math.max(20, Math.round((areaWidth - targetW) / 2));
+    const top = Math.max(20, Math.round((areaHeight - targetH) / 2));
+
+    win.style.width = `${targetW}px`;
+    win.style.height = `${targetH}px`;
+    win.style.left = `${left}px`;
+    win.style.top = `${top}px`;
+  }
+
   // Smart Grid Search: Calculates desktop area with minimum overlap for newly opened windows
   function findLeastOverlappingPosition(targetWin) {
     if (window.innerWidth <= 1024) return; // Desktop only
@@ -73,6 +107,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (pos.top) targetWin.style.top = pos.top;
       if (pos.width) targetWin.style.width = pos.width;
       if (pos.height) targetWin.style.height = pos.height;
+      return;
+    }
+
+    // Always keep Portfolio window centered when opened (unless custom dragged)
+    if (targetWin.id === 'win-portfolio') {
+      centerPortfolioWindow(targetWin);
       return;
     }
 
@@ -535,6 +575,17 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
   });
+
+  if (!isMobile) {
+    centerPortfolioWindow();
+  }
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 1024) {
+      centerPortfolioWindow();
+    }
+  });
+
   updateTaskbarTabs();
 
 
@@ -596,7 +647,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="item-media">
             <img src="${thumbSrc}" alt="${item.title || 'Video'}" loading="lazy">
             <div class="play-overlay">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="white">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
                 <path d="M8 5v14l11-7z"/>
               </svg>
             </div>
