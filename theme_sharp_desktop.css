@@ -469,8 +469,12 @@ body.is-dragging {
   z-index: 20;
 }
 
+#win-profile.expanded-height,
+#win-portfolio.expanded-height,
+#win-schedule.expanded-height,
+#win-quote.expanded-height,
 .os-window.expanded-height {
-  height: min(1600px, 94vh) !important;
+  height: min(1600px, 92vh) !important;
 }
 
 
@@ -1166,6 +1170,14 @@ body.is-dragging {
     margin-bottom: 16px;
     overflow: visible !important;
     box-sizing: border-box !important;
+  }
+
+  #win-profile.expanded-height,
+  #win-portfolio.expanded-height,
+  #win-schedule.expanded-height,
+  #win-quote.expanded-height,
+  .os-window.expanded-height {
+    height: min(1400px, 85vh) !important;
   }
 
   .os-window-body {

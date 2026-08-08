@@ -286,7 +286,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const maxBtn = win.querySelector('.max-btn');
     const closeBtn = win.querySelector('.close-btn');
 
-    if (expandBtn) expandBtn.addEventListener('click', (e) => { e.stopPropagation(); win.classList.toggle('expanded-height'); bringToFront(win); });
+    if (expandBtn) {
+      expandBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        win.style.removeProperty('height');
+        win.classList.toggle('expanded-height');
+        bringToFront(win);
+      });
+    }
     if (minBtn) minBtn.addEventListener('click', (e) => { e.stopPropagation(); minimizeWindow(win); });
     if (maxBtn) maxBtn.addEventListener('click', (e) => { e.stopPropagation(); maximizeWindow(win); });
     if (closeBtn) closeBtn.addEventListener('click', (e) => { e.stopPropagation(); closeWindow(win); });
