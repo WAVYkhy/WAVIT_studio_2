@@ -51,6 +51,17 @@ const portfolioData = [
   {
     category: "pv",
     title: {
+      ko: "0ml - 水族館に行きたい (수족관에 가고 싶어)",
+      ja: "0ml - 水族館に行きたい",
+      en: "0ml - Want to go to the Aquarium"
+    },
+    mediaUrl: "https://www.youtube.com/embed/zRPeS4TlAJE?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/hqdefault.jpg",
+    videoUrl: "https://youtu.be/zRPeS4TlAJE"
+  },
+  {
+    category: "pv",
+    title: {
       ko: "눅붕&위령 - PPPP",
       ja: "눅붕&위령 - PPPP",
       en: "Nukbung & Wiryung - PPPP"
@@ -61,6 +72,15 @@ const portfolioData = [
   },
 
   // --- Thumbnail (이미지) ---
+  {
+    category: "thumbnail",
+    title: {
+      ko: "0ml - 水族館に行きたい (수족관에 가고 싶어)",
+      ja: "0ml - 水族館に行きたい",
+      en: "0ml - Want to go to the Aquarium"
+    },
+    mediaUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/maxresdefault.jpg"
+  },
   {
     category: "thumbnail",
     title: {
