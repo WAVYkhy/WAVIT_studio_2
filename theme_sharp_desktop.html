@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3RKCSSGB4"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-B3RKCSSGB4');
+  </script>
+  <script>
+    // Promo query parameter check
+    (function() {
+      const p = new URLSearchParams(window.location.search);
+      if (p.has('nopromo') || p.get('promo') === 'false' || p.get('promo') === '0' || p.get('promo') === 'off' || p.has('nopopup') || p.has('clean') || p.has('no_promo')) {
+        document.documentElement.classList.add('no-promo');
+      }
+    })();
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="WAVIT_studio — MV Design / 映像デザイン. PV, MV, Live2D &amp; Graphic Design Portfolio. Contact &amp; Commissions Available (KR / JP / EN).">
+  <meta property="og:title" content="WAVIT_studio — Nordic Sharp OS">
+  <meta property="og:description" content="PV, MV, Live2D &amp; Graphic Design Portfolio. Contact &amp; Commissions Available (KR / JP / EN).">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg">
+  <meta property="og:site_name" content="WAVIT_studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WAVIT_studio — Nordic Sharp OS">
+  <meta name="twitter:description" content="PV, MV, Live2D &amp; Graphic Design Portfolio. Contact &amp; Commissions Available (KR / JP / EN).">
+  <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg">
+  <title>WAVIT_studio — Nordic Sharp OS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="theme_sharp_desktop.css?v=1.0.0">
+</head>
+
+<body>
+
+  <!-- Nordic Boot Screen Overlay -->
+  <div id="bootOverlay" class="boot-overlay">
+    <div class="boot-content">
+      <div class="boot-logo">WAVIT_STUDIO</div>
+      <div class="boot-bar-container">
+        <div id="bootProgressBar" class="boot-progress-bar"></div>
+      </div>
+      <div class="boot-status">NORDIC_SHARP /// INITIALIZING OS</div>
+    </div>
+  </div>
+
+  <div class="desktop-wrapper">
+    
+    <!-- Main Desktop Workarea -->
+    <main class="desktop-area">
+
+
+      <!-- 1. Profile Window -->
+      <section class="os-window active-win" id="win-profile" aria-labelledby="win-profile-title">
+        <header class="os-titlebar">
+          <div class="titlebar-title" id="win-profile-title">
+            <span>[SYS.PROFILE]</span> WAVIT_studio
+          </div>
+          <div class="titlebar-controls">
+            <button type="button" class="win-control-btn min-btn" aria-label="Minimize">-</button>
+            <button type="button" class="win-control-btn max-btn" aria-label="Maximize">□</button>
+            <button type="button" class="win-control-btn close-btn" aria-label="Close">✕</button>
+          </div>
+        </header>
+        <div class="os-window-body">
+          <div class="profile-card">
+            <div class="profile-avatar-wrapper">
+              <img src="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg" alt="Profile Avatar">
+            </div>
+            <h1 class="profile-name-text">WAVIT_studio</h1>
+            <div class="profile-tag-line">MV Design / 映像デザイン (KR / JP / EN)</div>
+            
+            <div class="profile-bio-box">
+              PV, MV, Live2D & Graphic Design Portfolio.<br>
+              Direct Commissions & Inquiry via Email or Social Links below.
+            </div>
+
+            <button type="button" class="email-copy-btn" id="copyEmailBtn">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+              COPY EMAIL (wkjnaver@gmail.com)
+            </button>
+
+            <div class="social-links-grid">
+              <a href="https://x.com/WAVIT_studio" target="_blank" rel="noopener noreferrer" class="social-link-item">
+                <span>X (Twitter) ↗</span>
+              </a>
+              <a href="https://artmug.kr/index.php?channel=view&uid=58709" target="_blank" rel="noopener noreferrer" class="social-link-item">
+                <span>Artmug ↗</span>
+              </a>
+              <a href="https://meenit.co/commission/019e81f3-247a-74a9-ac4f-2191e2d85d45" target="_blank" rel="noopener noreferrer" class="social-link-item">
+                <span>Meenit ↗</span>
+              </a>
+              <a href="https://crepe.cm/ko/@WAVIT_studio/lol0kv6" target="_blank" rel="noopener noreferrer" class="social-link-item">
+                <span>Crepe ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. Consolidated Portfolio Window -->
+      <section class="os-window active-win" id="win-portfolio" aria-labelledby="win-portfolio-title">
+        <header class="os-titlebar">
+          <div class="titlebar-title" id="win-portfolio-title">
+            <span>[SYS.PORTFOLIO]</span> PORTFOLIO ARCHIVE
+          </div>
+          <div class="titlebar-controls">
+            <button type="button" class="win-control-btn min-btn" aria-label="Minimize">-</button>
+            <button type="button" class="win-control-btn max-btn" aria-label="Maximize">□</button>
+            <button type="button" class="win-control-btn close-btn" aria-label="Close">✕</button>
+          </div>
+        </header>
+        <div class="os-window-body">
+          <div class="portfolio-tab-nav">
+            <button type="button" class="portfolio-tab-btn active" data-tab="pv">
+              <span>PV VIDEO</span>
+              <span class="gallery-count-tag" id="pvCountTag">0 OBJECT(S)</span>
+            </button>
+            <button type="button" class="portfolio-tab-btn" data-tab="thumb">
+              <span>THUMBNAIL</span>
+              <span class="gallery-count-tag" id="thumbCountTag">0 OBJECT(S)</span>
+            </button>
+          </div>
+
+          <div class="portfolio-tab-content active" id="tab-content-pv">
+            <div class="gallery-grid" id="pvGrid"></div>
+          </div>
+          <div class="portfolio-tab-content hidden" id="tab-content-thumb">
+            <div class="gallery-grid" id="thumbGrid"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. Work Schedule Window (Embedded Iframe) -->
+      <section class="os-window hidden-win" id="win-schedule" aria-labelledby="win-schedule-title">
+        <header class="os-titlebar">
+          <div class="titlebar-title" id="win-schedule-title">
+            <span>[SYS.SCHEDULE]</span> WORK SCHEDULE TRACKER
+          </div>
+          <div class="titlebar-controls">
+            <button type="button" class="win-control-btn external-link-btn" data-url="https://schedule-tracker-five.vercel.app" aria-label="Open in New Tab" title="Open in New Tab">↗</button>
+            <button type="button" class="win-control-btn expand-btn" aria-label="Expand Height" title="Auto-Fit / Expand Height">↕</button>
+            <button type="button" class="win-control-btn min-btn" aria-label="Minimize">-</button>
+            <button type="button" class="win-control-btn max-btn" aria-label="Maximize">□</button>
+            <button type="button" class="win-control-btn close-btn" aria-label="Close">✕</button>
+          </div>
+        </header>
+        <div class="os-window-body iframe-body">
+          <div class="iframe-skeleton" id="skeleton-schedule">
+            <div class="skeleton-bar"></div>
+            <div class="skeleton-block"></div>
+            <div class="skeleton-block short"></div>
+          </div>
+          <iframe id="iframe-schedule" data-src="https://schedule-tracker-five.vercel.app" title="Work Schedule Tracker" loading="lazy"></iframe>
+        </div>
+      </section>
+
+      <!-- 5. Commission Prices Window (Embedded Iframe) -->
+      <section class="os-window hidden-win" id="win-quote" aria-labelledby="win-quote-title">
+        <header class="os-titlebar">
+          <div class="titlebar-title" id="win-quote-title">
+            <span>[SYS.QUOTE]</span> COMMISSION PRICING GUIDE
+          </div>
+          <div class="titlebar-controls">
+            <button type="button" class="win-control-btn external-link-btn" data-url="https://wavykhy.github.io/WAVIT-quote/" aria-label="Open in New Tab" title="Open in New Tab">↗</button>
+            <button type="button" class="win-control-btn expand-btn" aria-label="Expand Height" title="Auto-Fit / Expand Height">↕</button>
+            <button type="button" class="win-control-btn min-btn" aria-label="Minimize">-</button>
+            <button type="button" class="win-control-btn max-btn" aria-label="Maximize">□</button>
+            <button type="button" class="win-control-btn close-btn" aria-label="Close">✕</button>
+          </div>
+        </header>
+        <div class="os-window-body iframe-body">
+          <div class="iframe-skeleton" id="skeleton-quote">
+            <div class="skeleton-bar"></div>
+            <div class="skeleton-block"></div>
+            <div class="skeleton-block short"></div>
+          </div>
+          <iframe id="iframe-quote" data-src="https://wavykhy.github.io/WAVIT-quote/" title="Commission Prices" loading="lazy"></iframe>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- macOS Floating Glassmorphic Dock -->
+    <nav class="macos-dock" id="macosDock" aria-label="macOS Dock">
+      <div class="dock-apps-group">
+        <button type="button" class="dock-item" data-target="win-profile" aria-label="Profile Info">
+          <span class="dock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </span>
+          <span class="dock-label">PROFILE</span>
+        </button>
+
+        <button type="button" class="dock-item" data-target="win-portfolio" aria-label="Portfolio Archive">
+          <span class="dock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </span>
+          <span class="dock-label">PORTFOLIO</span>
+        </button>
+
+        <button type="button" class="dock-item" data-target="win-schedule" aria-label="Work Schedule">
+          <span class="dock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+          </span>
+          <span class="dock-label">SCHEDULE</span>
+        </button>
+
+        <button type="button" class="dock-item" data-target="win-quote" aria-label="Commission Prices">
+          <span class="dock-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="12" y1="1" x2="12" y2="23"></line>
+              <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+            </svg>
+          </span>
+          <span class="dock-label">PRICES</span>
+        </button>
+      </div>
+
+      <div class="dock-divider" role="separator"></div>
+
+      <div class="dock-tray-group">
+        <div class="dock-clock-display" id="sys-clock">00:00:00</div>
+      </div>
+    </nav>
+
+  </div>
+
+  <!-- Mobile Floating Bottom Navigation -->
+  <nav class="mobile-bottom-nav" aria-label="Mobile Navigation">
+    <button type="button" class="mobile-nav-btn active" data-target="win-profile" aria-label="Profile">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+      </svg>
+      <span>PROFILE</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target="win-portfolio" aria-label="Portfolio">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+        <line x1="8" y1="21" x2="16" y2="21"></line>
+        <line x1="12" y1="17" x2="12" y2="21"></line>
+      </svg>
+      <span>PORTFOLIO</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target="win-schedule" aria-label="Schedule">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+      </svg>
+      <span>SCHEDULE</span>
+    </button>
+    <button type="button" class="mobile-nav-btn" data-target="win-quote" aria-label="Prices">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="12" y1="1" x2="12" y2="23"></line>
+        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+      </svg>
+      <span>PRICE</span>
+    </button>
+  </nav>
+
+  <!-- Lightbox Modal -->
+  <div class="sharp-modal" id="sharpModal" aria-hidden="true">
+    <div class="sharp-modal-container">
+      <div class="sharp-modal-header">
+        <span id="modalTitle">MEDIA VIEWER</span>
+        <button type="button" class="sharp-modal-close" id="modalCloseBtn" aria-label="Close modal">✕</button>
+      </div>
+      <div class="sharp-modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <!-- Alert Modal -->
+  <div class="sharp-alert-box" id="alertBox" role="dialog" aria-modal="true">
+    <div class="sharp-alert-header">
+      <span>SYSTEM NOTIFICATION</span>
+      <button type="button" class="win-control-btn" id="closeAlertBox" aria-label="Close">✕</button>
+    </div>
+    <div class="sharp-alert-body" id="alertMessage"></div>
+    <div class="sharp-alert-footer">
+      <button type="button" class="sharp-alert-confirm" id="confirmAlert">CONFIRM</button>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="theme_sharp_desktop.js?v=1.0.0"></script>
+</body>
+
+</html>

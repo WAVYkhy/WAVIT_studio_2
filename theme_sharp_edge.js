@@ -16,44 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let currentCategory = 'pv';
 
-  // 1. Dark Mode / Light Mode Theme Toggle Logic
-  function initColorTheme() {
-    const savedTheme = localStorage.getItem('theme_sharp_mode');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    
-    let activeMode = 'light';
-    if (savedTheme === 'dark' || (!savedTheme && prefersDark)) {
-      activeMode = 'dark';
-    }
-    
-    applyTheme(activeMode);
-  }
-
-  function applyTheme(mode) {
-    document.documentElement.setAttribute('data-theme', mode);
-    localStorage.setItem('theme_sharp_mode', mode);
-    
-    if (themeToggleText) {
-      themeToggleText.textContent = mode === 'dark' ? 'LIGHT MODE' : 'DARK MODE';
-    }
-  }
-
-  if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const current = document.documentElement.getAttribute('data-theme') || 
-                     (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-      const newMode = current === 'dark' ? 'light' : 'dark';
-      applyTheme(newMode);
-
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'toggle_color_theme', {
-          'theme_mode': newMode
-        });
-      }
-    });
-  }
-
-  initColorTheme();
+  // 1. Nordic Sharp Light Mode System (Light Mode Exclusive)
+  document.documentElement.setAttribute('data-theme', 'light');
+  localStorage.setItem('theme_sharp_mode', 'light');
 
   // 2. Render Gallery Grid
   function renderGallery() {
@@ -96,8 +61,10 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
       `;
 
-      // Open Modal on Card Click
+      // Open Modal on Card Click & Set Selected State
       article.addEventListener('click', () => {
+        document.querySelectorAll('.sharp-card').forEach(c => c.classList.remove('selected'));
+        article.classList.add('selected');
         openModal(item);
       });
 

@@ -16,6 +16,12 @@
   <meta property="og:title" content="WAVIT_studio — MV Design / 映像デザイン">
   <meta property="og:description" content="PV, MV, Live2D &amp; Graphic Design Portfolio. Contact &amp; Commissions Available (KR / JP / EN).">
   <meta property="og:type" content="website">
+  <meta property="og:image" content="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg">
+  <meta property="og:site_name" content="WAVIT_studio">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WAVIT_studio — MV Design / 映像デザイン">
+  <meta name="twitter:description" content="PV, MV, Live2D &amp; Graphic Design Portfolio. Contact &amp; Commissions Available (KR / JP / EN).">
+  <meta name="twitter:image" content="https://pbs.twimg.com/profile_images/2058491951331373056/EVfkwDbP_400x400.jpg">
   <title>WAVIT_studio</title>
   <style>
     body {
@@ -24,8 +30,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: #fbfbfc;
-      font-family: sans-serif;
+      background-color: #0b0c0e;
+      color: #e0e0e0;
+      font-family: monospace;
     }
     .loader {
       font-size: 14px;
@@ -40,23 +47,11 @@
   </style>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 4가지 테마 중 하나를 랜덤으로 선택
-      const themes = [
-        'theme_editorial.html', // 1. 기존 에디토리얼 스타일
-        'theme_brutalist.html', // 2. 사이버 브루탈리즘 스타일
-        'pastel_retro_desktop.html', // 3. 파스텔 레트로 데스크톱 스타일
-        'theme_sharp_edge.html' // 4. 노르딕 샵 에지 스타일
-      ];
-      
+      // Single unified theme: theme_sharp_desktop.html
+      const selectedTheme = 'theme_sharp_desktop.html';
       const urlParams = new URLSearchParams(window.location.search);
-      const exclude = urlParams.get('exclude');
       
-      // 새로고침 시 이전에 머물던 테마를 제외한 목록에서만 랜덤 선택
-      const availableThemes = exclude ? themes.filter(t => t !== exclude) : themes;
-      const randomIndex = Math.floor(Math.random() * availableThemes.length);
-      const selectedTheme = availableThemes[randomIndex];
-      
-      // GA4로 어떤 테마가 배정되었는지 이벤트 전송 (A/B 테스트 분석용)
+      // GA4 event tracking
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'theme_assignment', {
           'assigned_theme': selectedTheme
@@ -66,12 +61,12 @@
       urlParams.delete('exclude');
       const searchStr = urlParams.toString() ? ('?' + urlParams.toString()) : '';
 
-      // 선택된 테마 페이지로 히스토리를 덮어쓰며 이동 (뒤로가기 시 무한 루프 방지)
+      // Redirect replacing history
       window.location.replace(selectedTheme + searchStr);
     });
   </script>
 </head>
 <body>
-  <div class="loader">INITIALIZING...</div>
+  <div class="loader">NORDIC_SHARP OS INITIALIZING...</div>
 </body>
 </html>
