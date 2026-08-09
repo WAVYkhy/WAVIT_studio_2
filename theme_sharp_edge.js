@@ -20,6 +20,15 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.setAttribute('data-theme', 'light');
   localStorage.setItem('theme_sharp_mode', 'light');
 
+  function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+  }
+
   // 2. Render Gallery Grid
   function renderGallery() {
     if (!galleryGrid) return;
@@ -28,7 +37,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let pvCount = 0;
     let thumbCount = 0;
 
-    portfolioData.forEach((item, index) => {
+    const shuffledData = shuffleArray(portfolioData);
+
+    shuffledData.forEach((item, index) => {
       if (item.category === 'pv') pvCount++;
       if (item.category === 'thumbnail') thumbCount++;
 
