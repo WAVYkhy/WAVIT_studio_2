@@ -1671,3 +1671,13 @@ body.is-dragging {
 
 
 
+
+
+/* ==========================================
+ * No-Promo Mode Override (Activated when ?nopromo=true)
+ * ========================================== */
+html.no-promo .profile-bio-box,
+html.no-promo .email-copy-btn,
+html.no-promo .social-links-grid {
+  display: none !important;
+}

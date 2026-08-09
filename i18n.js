@@ -256,6 +256,8 @@ class I18nEngine {
       pillText.textContent = this.currentLanguage.toUpperCase();
     }
 
+    const isNoPromo = document.documentElement.classList.contains('no-promo');
+
     // 6. Update external iframe parameters if loaded
     const iframeSchedule = document.getElementById('iframe-schedule');
     if (iframeSchedule && iframeSchedule.getAttribute('data-src')) {
@@ -268,10 +270,20 @@ class I18nEngine {
     const iframeQuote = document.getElementById('iframe-quote');
     if (iframeQuote && iframeQuote.getAttribute('data-src')) {
       const baseSrc = iframeQuote.getAttribute('data-src').split('?')[0];
-      iframeQuote.setAttribute('data-src', `${baseSrc}?lang=${this.currentLanguage}`);
+      const params = isNoPromo ? `embedded=true&lang=${this.currentLanguage}` : `lang=${this.currentLanguage}`;
+      const quoteUrl = `${baseSrc}?${params}`;
+      iframeQuote.setAttribute('data-src', quoteUrl);
       if (iframeQuote.src) {
-        iframeQuote.src = `${baseSrc}?lang=${this.currentLanguage}`;
+        iframeQuote.src = quoteUrl;
       }
+    }
+
+    // 7. Update win-quote external link button data-url conditionally
+    const quoteExtBtn = document.querySelector('#win-quote .external-link-btn');
+    if (quoteExtBtn) {
+      const baseSrc = 'https://wavykhy.github.io/WAVIT-quote/';
+      const params = isNoPromo ? `embedded=true&lang=${this.currentLanguage}` : `lang=${this.currentLanguage}`;
+      quoteExtBtn.setAttribute('data-url', `${baseSrc}?${params}`);
     }
   }
 
