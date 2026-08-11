@@ -186,6 +186,11 @@ class I18nEngine {
     url.searchParams.set('lang', lang);
     window.history.replaceState(null, '', url.toString());
 
+    if (typeof window.gtag === 'function') {
+      window.gtag('set', 'user_properties', { 'user_language': lang });
+      window.gtag('event', 'user_language_config', { 'language': lang });
+    }
+
     if (typeof window.triggerBootTransition === 'function') {
       window.triggerBootTransition(() => {
         this.updateDOM();

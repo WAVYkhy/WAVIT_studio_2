@@ -54,7 +54,8 @@
       // GA4 event tracking
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'theme_assignment', {
-          'assigned_theme': selectedTheme
+          'assigned_theme': selectedTheme,
+          'transport': 'beacon'
         });
       }
 

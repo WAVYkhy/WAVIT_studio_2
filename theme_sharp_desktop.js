@@ -250,6 +250,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const wasHidden = win.classList.contains('hidden-win');
     win.classList.remove('hidden-win', 'minimized');
+
+    if (typeof window.gtag === 'function') {
+      if (winId === 'win-quote') {
+        window.gtag('event', 'click_commission', { 'source': 'window' });
+      } else if (winId === 'win-schedule') {
+        window.gtag('event', 'click_schedule', { 'source': 'window' });
+      }
+    }
     
     // Check for lazy iframe loading & skeleton hide
     const iframe = win.querySelector('iframe[data-src]');
@@ -339,7 +347,15 @@ document.addEventListener('DOMContentLoaded', () => {
       extBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         const url = extBtn.getAttribute('data-url');
-        if (url) window.open(url, '_blank', 'noopener,noreferrer');
+        if (url) {
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'click_social_outbound', {
+              'url': url,
+              'transport': 'beacon'
+            });
+          }
+          window.open(url, '_blank', 'noopener,noreferrer');
+        }
       });
     }
 
@@ -499,6 +515,10 @@ document.addEventListener('DOMContentLoaded', () => {
       const targetTab = btn.getAttribute('data-tab');
       portfolioTabBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
+
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'switch_portfolio_tab', { 'category': targetTab });
+      }
 
       document.querySelectorAll('.portfolio-tab-content').forEach(content => {
         content.classList.add('hidden');
@@ -713,6 +733,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (sharpModal) {
     sharpModal.addEventListener('click', (e) => {
       if (e.target === sharpModal) closeModal();
+      const link = e.target.closest('a');
+      if (link && typeof window.gtag === 'function') {
+        window.gtag('event', 'click_social_outbound', {
+          'url': link.href,
+          'transport': 'beacon'
+        });
+      }
     });
   }
 
@@ -768,6 +795,13 @@ document.addEventListener('DOMContentLoaded', () => {
           card.classList.add('selected');
           const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
           const watchText = window.i18n ? window.i18n.get('portfolio.watchYoutube') : 'WATCH ON YOUTUBE ↗';
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'youtube_interaction', {
+              'action': 'open_modal',
+              'video_id': videoId,
+              'title': localizedTitle || item.title || 'PV WORK'
+            });
+          }
           openModal(
             localizedTitle || 'PV WORK', 
             `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
@@ -790,6 +824,12 @@ document.addEventListener('DOMContentLoaded', () => {
         card.addEventListener('click', () => {
           document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
           card.classList.add('selected');
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'view_portfolio_item', {
+              'category': 'graphic',
+              'title': localizedTitle || item.title || 'GRAPHIC WORK'
+            });
+          }
           openModal(localizedTitle || 'GRAPHIC WORK', `<img src="${item.mediaUrl}" alt="${localizedTitle}">`);
         });
 
@@ -855,6 +895,18 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     });
   }
+
+  // Social Links Outbound GA4 Tracking
+  document.querySelectorAll('.social-link-item').forEach(link => {
+    link.addEventListener('click', () => {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'click_social_outbound', {
+          'url': link.href,
+          'transport': 'beacon'
+        });
+      }
+    });
+  });
 
   // ==========================================
   // 7. Mobile Touch & Swipe Gesture Engine
