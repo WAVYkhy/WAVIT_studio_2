@@ -703,9 +703,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // 5. Portfolio Data Rendering & Lightbox
   // ==========================================
   const pvGrid = document.getElementById('pvGrid');
+  const live2dGrid = document.getElementById('live2dGrid');
   const thumbGrid = document.getElementById('thumbGrid');
-  const pvCountTag = document.getElementById('pvCountTag');
-  const thumbCountTag = document.getElementById('thumbCountTag');
 
   const sharpModal = document.getElementById('sharpModal');
   const modalTitle = document.getElementById('modalTitle');
@@ -755,10 +754,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function renderGalleries() {
     if (typeof portfolioData === 'undefined') return;
 
-    let pCount = 0;
-    let tCount = 0;
-
     if (pvGrid) pvGrid.innerHTML = '';
+    if (live2dGrid) live2dGrid.innerHTML = '';
     if (thumbGrid) thumbGrid.innerHTML = '';
 
     const currentLang = window.i18n ? window.i18n.currentLanguage : 'ko';
@@ -812,7 +809,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         pvGrid.appendChild(card);
-        pCount++;
+      } else if (item.category === 'live2d' && live2dGrid) {
+        const videoId = item.mediaUrl.match(/embed\/([^?]+)/) ? item.mediaUrl.match(/embed\/([^?]+)/)[1] : '';
+        const thumbSrc = item.thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '');
+        
+        card.innerHTML = `
+          <div class="item-media">
+            <img src="${thumbSrc}" alt="${localizedTitle || 'Video'}" loading="lazy">
+            <div class="play-overlay">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+          <div class="item-title">${localizedTitle || 'LIVE2D_WORK_' + (index + 1)}</div>
+        `;
+
+        card.addEventListener('click', () => {
+          document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
+          card.classList.add('selected');
+          const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+          const watchText = window.i18n ? window.i18n.get('portfolio.watchYoutube') : 'WATCH ON YOUTUBE ↗';
+          if (typeof window.gtag === 'function') {
+            window.gtag('event', 'youtube_interaction', {
+              'action': 'open_modal',
+              'video_id': videoId,
+              'title': localizedTitle || item.title || 'LIVE2D WORK'
+            });
+          }
+          openModal(
+            localizedTitle || 'LIVE2D WORK', 
+            `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+             <div class="modal-footer-link" style="margin-top: 12px; text-align: right;">
+               <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 700; font-family: var(--font-mono);">${watchText}</a>
+             </div>`
+          );
+        });
+
+        live2dGrid.appendChild(card);
       } else if (item.category === 'thumbnail' && thumbGrid) {
         card.innerHTML = `
           <div class="item-media">
@@ -834,20 +868,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         thumbGrid.appendChild(card);
-        tCount++;
       }
     });
-
-    if (pvCountTag) {
-      pvCountTag.textContent = window.i18n 
-        ? window.i18n.get('portfolio.countTag', { count: pCount }) 
-        : `${pCount} OBJECT(S)`;
-    }
-    if (thumbCountTag) {
-      thumbCountTag.textContent = window.i18n 
-        ? window.i18n.get('portfolio.countTag', { count: tCount }) 
-        : `${tCount} OBJECT(S)`;
-    }
   }
 
   renderGalleries();
@@ -980,7 +1002,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Horizontal Swipe for Portfolio Tabs (PV Video ↔ Thumbnail)
+  // Horizontal Swipe for Portfolio Tabs (PV ↔ Live2D ↔ Thumbnail)
   const portfolioWindow = document.getElementById('win-portfolio');
   if (portfolioWindow) {
     let pStartX = 0;
@@ -1000,14 +1022,21 @@ document.addEventListener('DOMContentLoaded', () => {
       const deltaY = endY - pStartY;
 
       if (Math.abs(deltaX) > 80 && Math.abs(deltaX) > Math.abs(deltaY) * 1.5) {
+        const tabs = ['pv', 'live2d', 'thumb'];
+        const currentActiveBtn = portfolioWindow.querySelector('.portfolio-tab-btn.active');
+        const currentTab = currentActiveBtn ? currentActiveBtn.getAttribute('data-tab') : 'pv';
+        const currentIndex = tabs.indexOf(currentTab);
+
         if (deltaX < 0) {
-          // Swipe Left -> Next Tab (Thumbnail)
-          const thumbBtn = portfolioWindow.querySelector('.portfolio-tab-btn[data-tab="thumb"]');
-          if (thumbBtn) thumbBtn.click();
+          // Swipe Left -> Next Tab
+          const nextIndex = Math.min(tabs.length - 1, currentIndex + 1);
+          const nextBtn = portfolioWindow.querySelector(`.portfolio-tab-btn[data-tab="${tabs[nextIndex]}"]`);
+          if (nextBtn) nextBtn.click();
         } else {
-          // Swipe Right -> Prev Tab (PV Video)
-          const pvBtn = portfolioWindow.querySelector('.portfolio-tab-btn[data-tab="pv"]');
-          if (pvBtn) pvBtn.click();
+          // Swipe Right -> Prev Tab
+          const prevIndex = Math.max(0, currentIndex - 1);
+          const prevBtn = portfolioWindow.querySelector(`.portfolio-tab-btn[data-tab="${tabs[prevIndex]}"]`);
+          if (prevBtn) prevBtn.click();
         }
         if (navigator.vibrate) navigator.vibrate(8);
       }

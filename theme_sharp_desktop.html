@@ -35,7 +35,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="theme_sharp_desktop.css?v=1.0.0">
+  <link rel="stylesheet" href="theme_sharp_desktop.css?v=1.1.0">
 </head>
 
 <body>
@@ -146,17 +146,21 @@
         <div class="os-window-body">
           <div class="portfolio-tab-nav">
             <button type="button" class="portfolio-tab-btn active" data-tab="pv">
-              <span data-i18n="portfolio.tabPv">PV VIDEO</span>
-              <span class="gallery-count-tag" id="pvCountTag">0 OBJECT(S)</span>
+              <span data-i18n="portfolio.tabPv">PV</span>
+            </button>
+            <button type="button" class="portfolio-tab-btn" data-tab="live2d">
+              <span data-i18n="portfolio.tabLive2d">LIVE2D</span>
             </button>
             <button type="button" class="portfolio-tab-btn" data-tab="thumb">
               <span data-i18n="portfolio.tabThumb">THUMBNAIL</span>
-              <span class="gallery-count-tag" id="thumbCountTag">0 OBJECT(S)</span>
             </button>
           </div>
 
           <div class="portfolio-tab-content active" id="tab-content-pv">
             <div class="gallery-grid" id="pvGrid"></div>
+          </div>
+          <div class="portfolio-tab-content hidden" id="tab-content-live2d">
+            <div class="gallery-grid" id="live2dGrid"></div>
           </div>
           <div class="portfolio-tab-content hidden" id="tab-content-thumb">
             <div class="gallery-grid" id="thumbGrid"></div>
@@ -334,9 +338,9 @@
     </div>
   </div>
 
-  <script src="i18n.js"></script>
-  <script src="data.js"></script>
-  <script src="theme_sharp_desktop.js?v=1.0.0"></script>
+  <script src="i18n.js?v=1.3.0"></script>
+  <script src="data.js?v=1.3.0"></script>
+  <script src="theme_sharp_desktop.js?v=1.3.0"></script>
 </body>
 
 </html>

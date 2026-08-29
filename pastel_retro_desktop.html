@@ -204,15 +204,32 @@
              <!-- JS will inject gallery items here -->
            </div>
         </div>
-        <div class="os-statusbar">
-          <span id="pvCount">0 objects</span>
+      </div>
+
+      <!-- Live2D Window -->
+      <div class="os-window gallery-window live2d-window">
+        <div class="os-titlebar">
+          <div class="title-text">C:\Portfolio\Live2D</div>
+          <div class="title-controls">
+            <span class="btn-deco">_</span>
+            <span class="btn-deco">□</span>
+            <span class="btn-deco">X</span>
+          </div>
+        </div>
+        <div class="os-menubar">
+          <span>File</span><span>Edit</span><span>Tools</span>
+        </div>
+        <div class="os-content gallery-content">
+           <div class="gallery-grid" id="live2dGrid">
+             <!-- JS will inject gallery items here -->
+           </div>
         </div>
       </div>
 
       <!-- Thumbnail Window -->
       <div class="os-window gallery-window thumb-window">
         <div class="os-titlebar">
-          <div class="title-text">C:\Portfolio\Image_Viewer</div>
+          <div class="title-text">C:\Portfolio\Thumbnail</div>
           <div class="title-controls">
             <span class="btn-deco">_</span>
             <span class="btn-deco">□</span>
@@ -226,9 +243,6 @@
            <div class="gallery-grid" id="thumbGrid">
              <!-- JS will inject gallery items here -->
            </div>
-        </div>
-        <div class="os-statusbar">
-          <span id="thumbCount">0 objects</span>
         </div>
       </div>
       
@@ -245,6 +259,9 @@
     <div class="task-tabs">
       <button class="task-tab" id="taskTabPv">
          <span class="tab-icon">🎥</span> Broadcasting
+      </button>
+      <button class="task-tab" id="taskTabLive2d">
+         <span class="tab-icon">✨</span> Live2D
       </button>
       <button class="task-tab" id="taskTabThumb">
          <span class="tab-icon">🖼️</span> Image Viewer

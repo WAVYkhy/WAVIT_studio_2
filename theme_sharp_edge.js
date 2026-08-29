@@ -1,8 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const galleryGrid = document.getElementById('galleryGrid');
   const tabs = document.querySelectorAll('.sharp-tab-btn');
-  const pvCountEl = document.getElementById('pvCount');
-  const thumbCountEl = document.getElementById('thumbCount');
 
   // Modal elements
   const modal = document.getElementById('sharpModal');
@@ -34,22 +32,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!galleryGrid) return;
     galleryGrid.innerHTML = '';
 
-    let pvCount = 0;
-    let thumbCount = 0;
-
     const shuffledData = shuffleArray(portfolioData);
 
     shuffledData.forEach((item, index) => {
-      if (item.category === 'pv') pvCount++;
-      if (item.category === 'thumbnail') thumbCount++;
-
       const article = document.createElement('article');
       article.className = 'sharp-card';
       article.dataset.category = item.category;
       article.dataset.index = index;
 
       let thumbSrc = '';
-      if (item.category === 'pv') {
+      if (item.category === 'pv' || item.category === 'live2d') {
         thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
       } else {
         thumbSrc = item.mediaUrl;
@@ -58,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
       article.innerHTML = `
         <div class="card-media-wrapper">
           <img src="${thumbSrc}" alt="${item.title || 'Portfolio item'}" loading="lazy">
-          ${item.category === 'pv' ? `
+          ${(item.category === 'pv' || item.category === 'live2d') ? `
             <div class="play-badge-overlay">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -81,9 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       galleryGrid.appendChild(article);
     });
-
-    if (pvCountEl) pvCountEl.textContent = pvCount;
-    if (thumbCountEl) thumbCountEl.textContent = thumbCount;
 
     filterCategory(currentCategory);
   }
@@ -126,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
     modalTitle.textContent = item.title ? `[${item.category.toUpperCase()}] ${item.title}` : 'MEDIA VIEWER';
     modalBody.innerHTML = '';
 
-    if (item.category === 'pv') {
+    if (item.category === 'pv' || item.category === 'live2d') {
       const videoEmbedUrl = item.mediaUrl.includes('?') ? `${item.mediaUrl}&autoplay=1` : `${item.mediaUrl}?autoplay=1&enablejsapi=1`;
       modalBody.innerHTML = `<iframe src="${videoEmbedUrl}" title="${item.title || 'YouTube Video'}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
     } else {

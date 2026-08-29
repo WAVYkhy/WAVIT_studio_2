@@ -27,8 +27,9 @@ const I18N_TRANSLATIONS = {
       copiedEmail: "이메일 주소가 클립보드에 복사되었습니다!"
     },
     portfolio: {
-      tabPv: "PV 영상",
-      tabThumb: "썸네일",
+      tabPv: "PV",
+      tabLive2d: "Live2D",
+      tabThumb: "THUMBNAIL",
       countTag: "{count}개 항목",
       watchYoutube: "유튜브에서 보기 ↗"
     },
@@ -60,8 +61,9 @@ const I18N_TRANSLATIONS = {
       copiedEmail: "メールアドレスをクリップボードにコピーしました！"
     },
     portfolio: {
-      tabPv: "PV 映像",
-      tabThumb: "サムネイル",
+      tabPv: "PV",
+      tabLive2d: "Live2D",
+      tabThumb: "THUMBNAIL",
       countTag: "{count}個の作品",
       watchYoutube: "YouTubeで見る ↗"
     },
@@ -93,7 +95,8 @@ const I18N_TRANSLATIONS = {
       copiedEmail: "EMAIL COPIED TO CLIPBOARD!"
     },
     portfolio: {
-      tabPv: "PV VIDEO",
+      tabPv: "PV",
+      tabLive2d: "LIVE2D",
       tabThumb: "THUMBNAIL",
       countTag: "{count} OBJECT(S)",
       watchYoutube: "WATCH ON YOUTUBE ↗"

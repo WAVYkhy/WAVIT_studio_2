@@ -46,6 +46,29 @@ const portfolioData = [
     thumbnailUrl: "https://img.youtube.com/vi/SqpiqGoxbAk/hqdefault.jpg",
     videoUrl: "https://youtu.be/SqpiqGoxbAk"
   },
+  {
+    category: "pv",
+    title: "에루 - プレイ (PLAY)",
+    mediaUrl: "https://www.youtube.com/embed/MvwT41NCJnU?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/MvwT41NCJnU/hqdefault.jpg",
+    videoUrl: "https://youtu.be/MvwT41NCJnU"
+  },
+
+  // --- Live2D (유튜브 영상) ---
+  {
+    category: "live2d",
+    title: "에루 - プレイ (PLAY)",
+    mediaUrl: "https://www.youtube.com/embed/MvwT41NCJnU?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/MvwT41NCJnU/hqdefault.jpg",
+    videoUrl: "https://youtu.be/MvwT41NCJnU"
+  },
+  {
+    category: "live2d",
+    title: "0ml - 水族館に行きたい",
+    mediaUrl: "https://www.youtube.com/embed/zRPeS4TlAJE?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/hqdefault.jpg",
+    videoUrl: "https://youtu.be/zRPeS4TlAJE"
+  },
 
   // --- Thumbnail (이미지) ---
   {
@@ -72,6 +95,11 @@ const portfolioData = [
     category: "thumbnail",
     title: "한이오 - IO",
     mediaUrl: "https://img.youtube.com/vi/dk6ztXNFmVw/maxresdefault.jpg"
+  },
+  {
+    category: "thumbnail",
+    title: "에루 - プレイ (PLAY)",
+    mediaUrl: "https://img.youtube.com/vi/MvwT41NCJnU/maxresdefault.jpg"
   }
 ];
 

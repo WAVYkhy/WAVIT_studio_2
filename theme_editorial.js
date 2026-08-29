@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
       article.dataset.title = item.title || '';
 
       let mediaContent = '';
-      if (item.category === 'pv') {
+      if (item.category === 'pv' || item.category === 'live2d') {
         const thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
         const targetUrl = item.videoUrl || item.mediaUrl;
         mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="pv-link"><img src="${thumbSrc}" alt="${item.title || 'YouTube video'}"><div class="play-overlay"><svg width="48" height="48" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></a>`;
@@ -106,14 +106,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. 필터 기능 및 레이아웃 스위치
   function filterGallery(category) {
-    if (category === 'pv') {
+    if (category === 'pv' || category === 'live2d') {
       galleryGrid.className = 'gallery-grid layout-grid';
-      carouselControls.style.display = 'none'; // PV에서는 네비게이션 숨김
+      carouselControls.style.display = 'none'; // PV/Live2D에서는 네비게이션 숨김
       
-      // PV 카드의 인라인 스타일 초기화 (캐러셀 설정 지우기)
+      // 카드의 인라인 스타일 초기화 (캐러셀 설정 지우기)
       const cards = document.querySelectorAll('.card');
       cards.forEach(card => {
-        if (card.dataset.category === 'pv') {
+        if (card.dataset.category === category) {
           card.style.transform = '';
           card.style.zIndex = '';
           card.style.display = 'flex';

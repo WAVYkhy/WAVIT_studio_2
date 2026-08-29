@@ -14,15 +14,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // 2. Gallery Rendering
   const pvGrid = document.getElementById('pvGrid');
+  const live2dGrid = document.getElementById('live2dGrid');
   const thumbGrid = document.getElementById('thumbGrid');
-  const pvCount = document.getElementById('pvCount');
-  const thumbCount = document.getElementById('thumbCount');
 
   function renderGalleries() {
-    pvGrid.innerHTML = '';
-    thumbGrid.innerHTML = '';
-    let pCount = 0;
-    let tCount = 0;
+    if (pvGrid) pvGrid.innerHTML = '';
+    if (live2dGrid) live2dGrid.innerHTML = '';
+    if (thumbGrid) thumbGrid.innerHTML = '';
     
     portfolioData.forEach((item, index) => {
       const el = document.createElement('div');
@@ -42,8 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(targetUrl, '_blank', 'noopener,noreferrer');
           }
         });
-        pvGrid.appendChild(el);
-        pCount++;
+        if (pvGrid) pvGrid.appendChild(el);
+      } else if (item.category === 'live2d') {
+        const thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
+        const targetUrl = item.videoUrl || item.mediaUrl;
+        mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="pv-link"><img src="${thumbSrc}" alt="${item.title || 'Video'}"><div class="play-overlay"><svg width="40" height="40" viewBox="0 0 24 24" fill="white"><path d="M8 5v14l11-7z"/></svg></div></a>`;
+        el.innerHTML = `
+          <div class="item-media">${mediaContent}</div>
+          <div class="item-title">${item.title || 'Live2D_' + index}</div>
+        `;
+        el.addEventListener('click', (e) => {
+          if (!e.target.closest('a')) {
+            window.open(targetUrl, '_blank', 'noopener,noreferrer');
+          }
+        });
+        if (live2dGrid) live2dGrid.appendChild(el);
       } else if (item.category === 'thumbnail') {
         const targetUrl = item.mediaUrl;
         mediaContent = `<a href="${targetUrl}" target="_blank" rel="noopener noreferrer" class="thumb-link"><img src="${targetUrl}" alt="${item.title || 'Image'}"></a>`;
@@ -56,13 +67,9 @@ document.addEventListener('DOMContentLoaded', () => {
             window.open(targetUrl, '_blank', 'noopener,noreferrer');
           }
         });
-        thumbGrid.appendChild(el);
-        tCount++;
+        if (thumbGrid) thumbGrid.appendChild(el);
       }
     });
-
-    if(pvCount) pvCount.textContent = `${pCount} object(s)`;
-    if(thumbCount) thumbCount.textContent = `${tCount} object(s)`;
   }
 
   // Init Galleries
@@ -71,6 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // 3. Taskbar Tabs (Bringing windows to front)
   const taskTabs = document.querySelectorAll('.task-tab');
   const pvWin = document.querySelector('.pv-window');
+  const live2dWin = document.querySelector('.live2d-window');
   const thumbWin = document.querySelector('.thumb-window');
 
   // Activate a window visually
@@ -89,6 +97,15 @@ document.addEventListener('DOMContentLoaded', () => {
       bringToFront(pvWin);
       document.querySelectorAll('.task-tab').forEach(t => t.classList.remove('active'));
       taskTabPv.classList.add('active');
+    });
+  }
+
+  const taskTabLive2d = document.getElementById('taskTabLive2d');
+  if (taskTabLive2d) {
+    taskTabLive2d.addEventListener('click', () => {
+      bringToFront(live2dWin);
+      document.querySelectorAll('.task-tab').forEach(t => t.classList.remove('active'));
+      taskTabLive2d.classList.add('active');
     });
   }
 
