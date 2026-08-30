@@ -6,65 +6,72 @@ const portfolioData = [
   // --- PV (유튜브 영상) ---
   {
     category: "pv",
-    title: "해잉피 - ただ君に晴れ (그저 네게 맑아라)",
+    title: "ただ君に晴れ (그저 네게 맑아라) - 해잉피",
     mediaUrl: "https://www.youtube.com/embed/M4Ml6dvuRlQ?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/M4Ml6dvuRlQ/hqdefault.jpg",
     videoUrl: "https://youtu.be/M4Ml6dvuRlQ"
   },
   {
     category: "pv",
-    title: "눅붕 - 피차일반",
+    title: "피차일반 - 눅붕",
     mediaUrl: "https://www.youtube.com/embed/s5AKCJYuaw8?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/s5AKCJYuaw8/hqdefault.jpg",
     videoUrl: "https://youtu.be/s5AKCJYuaw8"
   },
   {
     category: "pv",
-    title: "0ml - なんでもにうむ",
+    title: "なんでもにうむ - 0ml",
     mediaUrl: "https://www.youtube.com/embed/_CZxSnLBakA?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/_CZxSnLBakA/hqdefault.jpg",
     videoUrl: "https://youtu.be/_CZxSnLBakA"
   },
   {
     category: "pv",
-    title: "한이오 - IO",
+    title: "IO - 한이오",
     mediaUrl: "https://www.youtube.com/embed/dk6ztXNFmVw?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/dk6ztXNFmVw/hqdefault.jpg",
     videoUrl: "https://youtu.be/dk6ztXNFmVw"
   },
   {
     category: "pv",
-    title: "0ml - 水族館に行きたい",
+    title: "水族館に行きたい - 0ml",
     mediaUrl: "https://www.youtube.com/embed/zRPeS4TlAJE?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/hqdefault.jpg",
     videoUrl: "https://youtu.be/zRPeS4TlAJE"
   },
   {
     category: "pv",
-    title: "눅붕&위령 - PPPP",
+    title: "PPPP - 눅붕&위령",
     mediaUrl: "https://www.youtube.com/embed/SqpiqGoxbAk?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/SqpiqGoxbAk/hqdefault.jpg",
     videoUrl: "https://youtu.be/SqpiqGoxbAk"
   },
   {
     category: "pv",
-    title: "에루 - プレイ (PLAY)",
+    title: "プレイ (PLAY) - 에루",
     mediaUrl: "https://www.youtube.com/embed/MvwT41NCJnU?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/MvwT41NCJnU/hqdefault.jpg",
     videoUrl: "https://youtu.be/MvwT41NCJnU"
+  },
+  {
+    category: "pv",
+    title: "青春のアーカイブ - 텐코 외 4인",
+    mediaUrl: "https://www.youtube.com/embed/pRWgHJ5LLdY?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/pRWgHJ5LLdY/hqdefault.jpg",
+    videoUrl: "https://youtu.be/pRWgHJ5LLdY"
   },
 
   // --- Live2D (유튜브 영상) ---
   {
     category: "live2d",
-    title: "에루 - プレイ (PLAY)",
+    title: "プレイ (PLAY) - 에루",
     mediaUrl: "https://www.youtube.com/embed/MvwT41NCJnU?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/MvwT41NCJnU/hqdefault.jpg",
     videoUrl: "https://youtu.be/MvwT41NCJnU"
   },
   {
     category: "live2d",
-    title: "0ml - 水族館に行きたい",
+    title: "水族館に行きたい - 0ml",
     mediaUrl: "https://www.youtube.com/embed/zRPeS4TlAJE?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/hqdefault.jpg",
     videoUrl: "https://youtu.be/zRPeS4TlAJE"
@@ -73,33 +80,38 @@ const portfolioData = [
   // --- Thumbnail (이미지) ---
   {
     category: "thumbnail",
-    title: "0ml - 水族館に行きたい",
+    title: "水族館に行きたい - 0ml",
     mediaUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
-    title: "0ml - なんでもにうむ",
+    title: "なんでもにうむ - 0ml",
     mediaUrl: "https://img.youtube.com/vi/_CZxSnLBakA/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
-    title: "해잉피 - ただ君に晴れ (그저 네게 맑아라)",
+    title: "ただ君に晴れ (그저 네게 맑아라) - 해잉피",
     mediaUrl: "https://img.youtube.com/vi/M4Ml6dvuRlQ/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
-    title: "눅붕&위령 - PPPP",
+    title: "PPPP - 눅붕&위령",
     mediaUrl: "https://img.youtube.com/vi/SqpiqGoxbAk/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
-    title: "한이오 - IO",
+    title: "IO - 한이오",
     mediaUrl: "https://img.youtube.com/vi/dk6ztXNFmVw/maxresdefault.jpg"
   },
   {
     category: "thumbnail",
-    title: "에루 - プレイ (PLAY)",
+    title: "プレイ (PLAY) - 에루",
     mediaUrl: "https://img.youtube.com/vi/MvwT41NCJnU/maxresdefault.jpg"
+  },
+  {
+    category: "thumbnail",
+    title: "青春のアーカイブ - 텐코 외 4인",
+    mediaUrl: "https://img.youtube.com/vi/pRWgHJ5LLdY/maxresdefault.jpg"
   }
 ];
 

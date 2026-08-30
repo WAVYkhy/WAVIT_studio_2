@@ -771,6 +771,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ? getLocalizedTitle(item, currentLang) 
         : (item.title || '');
 
+      card.title = localizedTitle;
+
       if (item.category === 'pv' && pvGrid) {
         const videoId = item.mediaUrl.match(/embed\/([^?]+)/) ? item.mediaUrl.match(/embed\/([^?]+)/)[1] : '';
         const thumbSrc = item.thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '');
@@ -784,7 +786,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </svg>
             </div>
           </div>
-          <div class="item-title">${localizedTitle || 'PV_WORK_' + (index + 1)}</div>
+          <div class="item-title" title="${localizedTitle}">${localizedTitle || 'PV_WORK_' + (index + 1)}</div>
         `;
 
         card.addEventListener('click', () => {
@@ -822,7 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
               </svg>
             </div>
           </div>
-          <div class="item-title">${localizedTitle || 'LIVE2D_WORK_' + (index + 1)}</div>
+          <div class="item-title" title="${localizedTitle}">${localizedTitle || 'LIVE2D_WORK_' + (index + 1)}</div>
         `;
 
         card.addEventListener('click', () => {
@@ -852,7 +854,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="item-media">
             <img src="${item.mediaUrl}" alt="${localizedTitle || 'Thumbnail'}" loading="lazy">
           </div>
-          <div class="item-title">${localizedTitle || 'GRAPHIC_WORK_' + (index + 1)}</div>
+          <div class="item-title" title="${localizedTitle}">${localizedTitle || 'GRAPHIC_WORK_' + (index + 1)}</div>
         `;
 
         card.addEventListener('click', () => {
