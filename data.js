@@ -60,6 +60,13 @@ const portfolioData = [
     thumbnailUrl: "https://img.youtube.com/vi/pRWgHJ5LLdY/hqdefault.jpg",
     videoUrl: "https://youtu.be/pRWgHJ5LLdY"
   },
+  {
+    category: "pv",
+    title: "생일축하전파 -HBD- 912 - 0ml",
+    mediaUrl: "https://www.youtube.com/embed/ZUceUkp0Wr8?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/ZUceUkp0Wr8/hqdefault.jpg",
+    videoUrl: "https://youtu.be/ZUceUkp0Wr8"
+  },
 
   // --- Live2D (유튜브 영상) ---
   {
@@ -112,6 +119,11 @@ const portfolioData = [
     category: "thumbnail",
     title: "青春のアーカイブ - 텐코 외 4인",
     mediaUrl: "https://img.youtube.com/vi/pRWgHJ5LLdY/maxresdefault.jpg"
+  },
+  {
+    category: "thumbnail",
+    title: "생일축하전파 -HBD- 912 - 0ml",
+    mediaUrl: "https://img.youtube.com/vi/ZUceUkp0Wr8/maxresdefault.jpg"
   }
 ];
 
