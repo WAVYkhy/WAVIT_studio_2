@@ -6,6 +6,13 @@ const portfolioData = [
   // --- PV (유튜브 영상) ---
   {
     category: "pv",
+    title: "ニャニャニャチュニャ - 눅붕",
+    mediaUrl: "https://www.youtube.com/embed/lfKXCWEUk6g?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/lfKXCWEUk6g/hqdefault.jpg",
+    videoUrl: "https://youtu.be/lfKXCWEUk6g"
+  },
+  {
+    category: "pv",
     title: "ただ君に晴れ (그저 네게 맑아라) - 해잉피",
     mediaUrl: "https://www.youtube.com/embed/M4Ml6dvuRlQ?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/M4Ml6dvuRlQ/hqdefault.jpg",
@@ -85,6 +92,11 @@ const portfolioData = [
   },
 
   // --- Thumbnail (이미지) ---
+  {
+    category: "thumbnail",
+    title: "ニャニャニャチュニャ - 눅붕",
+    mediaUrl: "https://res.cloudinary.com/ddaeo1gux/image/upload/v1790586986/thumb_001_esxmcx.png"
+  },
   {
     category: "thumbnail",
     title: "水族館に行きたい - 0ml",
