@@ -74,6 +74,13 @@ const portfolioData = [
     thumbnailUrl: "https://img.youtube.com/vi/ZUceUkp0Wr8/hqdefault.jpg",
     videoUrl: "https://youtu.be/ZUceUkp0Wr8"
   },
+  {
+    category: "pv",
+    title: "truth - 에루",
+    mediaUrl: "https://www.youtube.com/embed/yLWyPyALMLc?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/yLWyPyALMLc/hqdefault.jpg",
+    videoUrl: "https://youtu.be/yLWyPyALMLc"
+  },
 
   // --- Live2D (유튜브 영상) ---
   {
@@ -89,6 +96,13 @@ const portfolioData = [
     mediaUrl: "https://www.youtube.com/embed/zRPeS4TlAJE?enablejsapi=1",
     thumbnailUrl: "https://img.youtube.com/vi/zRPeS4TlAJE/hqdefault.jpg",
     videoUrl: "https://youtu.be/zRPeS4TlAJE"
+  },
+  {
+    category: "live2d",
+    title: "truth - 에루",
+    mediaUrl: "https://www.youtube.com/embed/yLWyPyALMLc?enablejsapi=1",
+    thumbnailUrl: "https://img.youtube.com/vi/yLWyPyALMLc/hqdefault.jpg",
+    videoUrl: "https://youtu.be/yLWyPyALMLc"
   },
 
   // --- Thumbnail (이미지) ---
@@ -136,6 +150,11 @@ const portfolioData = [
     category: "thumbnail",
     title: "생일축하전파 -HBD- 912 - 0ml",
     mediaUrl: "https://img.youtube.com/vi/ZUceUkp0Wr8/maxresdefault.jpg"
+  },
+  {
+    category: "thumbnail",
+    title: "truth - 에루",
+    mediaUrl: "https://img.youtube.com/vi/yLWyPyALMLc/maxresdefault.jpg"
   }
 ];
 
