@@ -18,87 +18,109 @@ document.addEventListener('DOMContentLoaded', () => {
   document.documentElement.setAttribute('data-theme', 'light');
   localStorage.setItem('theme_sharp_mode', 'light');
 
-  function shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+  function groupAndSortByMonth(data, category) {
+    const items = data.filter(item => item.category === category);
+    // Sort descending by date (newest first)
+    items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    const grouped = {};
+    items.forEach(item => {
+      const m = item.date ? item.date.substring(0, 7).replace('-', '.') : 'UNDATED';
+      if (!grouped[m]) grouped[m] = [];
+      grouped[m].push(item);
+    });
+    return grouped;
+  }
+
+  function createCardElement(item, index) {
+    const article = document.createElement('article');
+    article.className = 'sharp-card';
+    article.dataset.category = item.category;
+    article.dataset.index = index;
+
+    let thumbSrc = '';
+    if (item.category === 'pv' || item.category === 'live2d') {
+      thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
+    } else {
+      thumbSrc = item.mediaUrl;
     }
-    return arr;
+
+    article.innerHTML = `
+      <div class="card-media-wrapper">
+        <img src="${thumbSrc}" alt="${item.title || 'Portfolio item'}" loading="lazy">
+        ${(item.category === 'pv' || item.category === 'live2d') ? `
+          <div class="play-badge-overlay">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+          </div>
+        ` : ''}
+      </div>
+      <div class="card-content">
+        <div class="card-title">${item.title || 'Untitled'}</div>
+        <span class="card-category-badge">${item.category.toUpperCase()}</span>
+      </div>
+    `;
+
+    // Open Modal on Card Click & Set Selected State
+    article.addEventListener('click', () => {
+      document.querySelectorAll('.sharp-card').forEach(c => c.classList.remove('selected'));
+      article.classList.add('selected');
+      openModal(item);
+    });
+
+    return article;
   }
 
   // 2. Render Gallery Grid
-  function renderGallery() {
+  function renderGallery(category = currentCategory) {
     if (!galleryGrid) return;
     galleryGrid.innerHTML = '';
-
-    const shuffledData = shuffleArray(portfolioData);
-
-    shuffledData.forEach((item, index) => {
-      const article = document.createElement('article');
-      article.className = 'sharp-card';
-      article.dataset.category = item.category;
-      article.dataset.index = index;
-
-      let thumbSrc = '';
-      if (item.category === 'pv' || item.category === 'live2d') {
-        thumbSrc = item.thumbnailUrl || (item.mediaUrl.match(/embed\/([^?]+)/) ? `https://img.youtube.com/vi/${item.mediaUrl.match(/embed\/([^?]+)/)[1]}/hqdefault.jpg` : '');
-      } else {
-        thumbSrc = item.mediaUrl;
-      }
-
-      article.innerHTML = `
-        <div class="card-media-wrapper">
-          <img src="${thumbSrc}" alt="${item.title || 'Portfolio item'}" loading="lazy">
-          ${(item.category === 'pv' || item.category === 'live2d') ? `
-            <div class="play-badge-overlay">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-            </div>
-          ` : ''}
-        </div>
-        <div class="card-content">
-          <div class="card-title">${item.title || 'Untitled'}</div>
-          <span class="card-category-badge">${item.category.toUpperCase()}</span>
-        </div>
-      `;
-
-      // Open Modal on Card Click & Set Selected State
-      article.addEventListener('click', () => {
-        document.querySelectorAll('.sharp-card').forEach(c => c.classList.remove('selected'));
-        article.classList.add('selected');
-        openModal(item);
-      });
-
-      galleryGrid.appendChild(article);
-    });
-
-    filterCategory(currentCategory);
-  }
-
-  // 3. Category Filter Logic
-  function filterCategory(category) {
     currentCategory = category;
-    const cards = document.querySelectorAll('.sharp-card');
 
-    cards.forEach(card => {
-      if (card.dataset.category === category) {
-        card.style.display = 'flex';
-      } else {
-        card.style.display = 'none';
-      }
-    });
-
+    // Update active tab button
     tabs.forEach(t => {
       t.classList.toggle('active', t.dataset.target === category);
     });
+
+    const grouped = groupAndSortByMonth(portfolioData, category);
+    const months = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
+    if (months.length === 0) {
+      galleryGrid.innerHTML = '<div style="color: var(--text-muted); font-family: var(--font-mono); padding: 24px; text-align: center;">NO ITEMS FOUND</div>';
+      return;
+    }
+
+    months.forEach(monthKey => {
+      const items = grouped[monthKey];
+      const section = document.createElement('div');
+      section.className = 'month-section';
+      section.setAttribute('data-month', monthKey);
+
+      section.innerHTML = `
+        <div class="month-header">
+          <div class="minimal-text">${monthKey}</div>
+          <div class="minimal-line"></div>
+        </div>
+      `;
+
+      const grid = document.createElement('div');
+      grid.className = 'month-gallery-grid';
+      items.forEach((item, idx) => {
+        const card = createCardElement(item, idx);
+        grid.appendChild(card);
+      });
+
+      section.appendChild(grid);
+      galleryGrid.appendChild(section);
+    });
   }
 
+  // 3. Category Filter Navigation Click
   tabs.forEach(tab => {
     tab.addEventListener('click', () => {
       const targetCategory = tab.dataset.target;
-      filterCategory(targetCategory);
+      renderGallery(targetCategory);
 
       if (typeof window.gtag === 'function') {
         window.gtag('event', 'switch_portfolio_tab', {
