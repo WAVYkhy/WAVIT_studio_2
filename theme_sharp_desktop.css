@@ -600,10 +600,60 @@ body.is-dragging {
 .portfolio-tab-nav {
   display: flex;
   gap: 8px;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 14px;
   border-bottom: 1px solid var(--nordic-border);
 }
+
+/* Gallery Container & Month Sections */
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.month-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+}
+
+.month-gallery-grid,
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+  gap: 20px;
+}
+
+/* Minimal Month Divider (Fixed Style) */
+.month-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  padding: 4px 0;
+}
+
+.minimal-line {
+  flex: 1;
+  height: 1px;
+  background: var(--nordic-border);
+}
+
+.minimal-text {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--nordic-text);
+  user-select: none;
+  white-space: nowrap;
+}
+
+
 
 .portfolio-tab-btn {
   background: var(--nordic-surface);

@@ -742,138 +742,139 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  function shuffleArray(array) {
-    const arr = [...array];
-    for (let i = arr.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]];
+  function groupAndSortByMonth(data, category) {
+    const items = data.filter(item => item.category === category);
+    // Sort descending by date (newest first)
+    items.sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+
+    const grouped = {};
+    items.forEach(item => {
+      const m = item.date ? item.date.substring(0, 7).replace('-', '.') : 'UNDATED';
+      if (!grouped[m]) grouped[m] = [];
+      grouped[m].push(item);
+    });
+    return grouped;
+  }
+
+  function createCardElement(item, index, currentLang) {
+    const card = document.createElement('div');
+    card.className = 'gallery-item';
+
+    const localizedTitle = typeof getLocalizedTitle === 'function' 
+      ? getLocalizedTitle(item, currentLang) 
+      : (item.title || '');
+
+    card.title = localizedTitle;
+
+    if (item.category === 'pv' || item.category === 'live2d') {
+      const videoId = item.mediaUrl.match(/embed\/([^?]+)/) ? item.mediaUrl.match(/embed\/([^?]+)/)[1] : '';
+      const thumbSrc = item.thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '');
+      const prefix = item.category === 'pv' ? 'PV_WORK_' : 'LIVE2D_WORK_';
+      
+      card.innerHTML = `
+        <div class="item-media">
+          <img src="${thumbSrc}" alt="${localizedTitle || 'Video'}" loading="lazy">
+          <div class="play-overlay">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+        <div class="item-title" title="${localizedTitle}">${localizedTitle || prefix + (index + 1)}</div>
+      `;
+
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
+        const watchText = window.i18n ? window.i18n.get('portfolio.watchYoutube') : 'WATCH ON YOUTUBE ↗';
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'youtube_interaction', {
+            'action': 'open_modal',
+            'video_id': videoId,
+            'title': localizedTitle || item.title || (item.category.toUpperCase() + ' WORK')
+          });
+        }
+        openModal(
+          localizedTitle || (item.category.toUpperCase() + ' WORK'), 
+          `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+           <div class="modal-footer-link" style="margin-top: 12px; text-align: right;">
+             <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 700; font-family: var(--font-mono);">${watchText}</a>
+           </div>`
+        );
+      });
+    } else if (item.category === 'thumbnail') {
+      card.innerHTML = `
+        <div class="item-media">
+          <img src="${item.mediaUrl}" alt="${localizedTitle || 'Thumbnail'}" loading="lazy">
+        </div>
+        <div class="item-title" title="${localizedTitle}">${localizedTitle || 'GRAPHIC_WORK_' + (index + 1)}</div>
+      `;
+
+      card.addEventListener('click', () => {
+        document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
+        card.classList.add('selected');
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'view_portfolio_item', {
+            'category': 'graphic',
+            'title': localizedTitle || item.title || 'GRAPHIC WORK'
+          });
+        }
+        openModal(localizedTitle || 'GRAPHIC WORK', `<img src="${item.mediaUrl}" alt="${localizedTitle}">`);
+      });
     }
-    return arr;
+
+    return card;
+  }
+
+  function renderCategoryContainer(container, category, currentLang) {
+    if (!container) return;
+    container.innerHTML = '';
+
+    const grouped = groupAndSortByMonth(portfolioData, category);
+    const months = Object.keys(grouped).sort((a, b) => b.localeCompare(a));
+
+    if (months.length === 0) {
+      container.innerHTML = '<div style="color: var(--text-muted); font-family: var(--font-mono); padding: 20px;">NO ITEMS FOUND</div>';
+      return;
+    }
+
+    months.forEach(monthKey => {
+      const items = grouped[monthKey];
+      const section = document.createElement('div');
+      section.className = 'month-section';
+      section.setAttribute('data-month', monthKey);
+
+      // Minimal divider with 2026.10 (work count removed per user request)
+      section.innerHTML = `
+        <div class="month-header">
+          <div class="minimal-text">${monthKey}</div>
+          <div class="minimal-line"></div>
+        </div>
+      `;
+
+      const grid = document.createElement('div');
+      grid.className = 'month-gallery-grid';
+      items.forEach((item, idx) => {
+        const card = createCardElement(item, idx, currentLang);
+        grid.appendChild(card);
+      });
+
+      section.appendChild(grid);
+      container.appendChild(section);
+    });
   }
 
   function renderGalleries() {
     if (typeof portfolioData === 'undefined') return;
-
-    if (pvGrid) pvGrid.innerHTML = '';
-    if (live2dGrid) live2dGrid.innerHTML = '';
-    if (thumbGrid) thumbGrid.innerHTML = '';
-
     const currentLang = window.i18n ? window.i18n.currentLanguage : 'ko';
 
-    // Always shuffle portfolio items randomly for a fresh layout
-    const shuffledData = shuffleArray(portfolioData);
-
-    shuffledData.forEach((item, index) => {
-      const card = document.createElement('div');
-      card.className = 'gallery-item';
-
-      const localizedTitle = typeof getLocalizedTitle === 'function' 
-        ? getLocalizedTitle(item, currentLang) 
-        : (item.title || '');
-
-      card.title = localizedTitle;
-
-      if (item.category === 'pv' && pvGrid) {
-        const videoId = item.mediaUrl.match(/embed\/([^?]+)/) ? item.mediaUrl.match(/embed\/([^?]+)/)[1] : '';
-        const thumbSrc = item.thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '');
-        
-        card.innerHTML = `
-          <div class="item-media">
-            <img src="${thumbSrc}" alt="${localizedTitle || 'Video'}" loading="lazy">
-            <div class="play-overlay">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="item-title" title="${localizedTitle}">${localizedTitle || 'PV_WORK_' + (index + 1)}</div>
-        `;
-
-        card.addEventListener('click', () => {
-          document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
-          const watchText = window.i18n ? window.i18n.get('portfolio.watchYoutube') : 'WATCH ON YOUTUBE ↗';
-          if (typeof window.gtag === 'function') {
-            window.gtag('event', 'youtube_interaction', {
-              'action': 'open_modal',
-              'video_id': videoId,
-              'title': localizedTitle || item.title || 'PV WORK'
-            });
-          }
-          openModal(
-            localizedTitle || 'PV WORK', 
-            `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-             <div class="modal-footer-link" style="margin-top: 12px; text-align: right;">
-               <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 700; font-family: var(--font-mono);">${watchText}</a>
-             </div>`
-          );
-        });
-
-        pvGrid.appendChild(card);
-      } else if (item.category === 'live2d' && live2dGrid) {
-        const videoId = item.mediaUrl.match(/embed\/([^?]+)/) ? item.mediaUrl.match(/embed\/([^?]+)/)[1] : '';
-        const thumbSrc = item.thumbnailUrl || (videoId ? `https://img.youtube.com/vi/${videoId}/hqdefault.jpg` : '');
-        
-        card.innerHTML = `
-          <div class="item-media">
-            <img src="${thumbSrc}" alt="${localizedTitle || 'Video'}" loading="lazy">
-            <div class="play-overlay">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="white">
-                <path d="M8 5v14l11-7z"/>
-              </svg>
-            </div>
-          </div>
-          <div class="item-title" title="${localizedTitle}">${localizedTitle || 'LIVE2D_WORK_' + (index + 1)}</div>
-        `;
-
-        card.addEventListener('click', () => {
-          document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          const embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1&enablejsapi=1`;
-          const watchText = window.i18n ? window.i18n.get('portfolio.watchYoutube') : 'WATCH ON YOUTUBE ↗';
-          if (typeof window.gtag === 'function') {
-            window.gtag('event', 'youtube_interaction', {
-              'action': 'open_modal',
-              'video_id': videoId,
-              'title': localizedTitle || item.title || 'LIVE2D WORK'
-            });
-          }
-          openModal(
-            localizedTitle || 'LIVE2D WORK', 
-            `<iframe src="${embedUrl}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-             <div class="modal-footer-link" style="margin-top: 12px; text-align: right;">
-               <a href="https://youtu.be/${videoId}" target="_blank" rel="noopener noreferrer" style="color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 700; font-family: var(--font-mono);">${watchText}</a>
-             </div>`
-          );
-        });
-
-        live2dGrid.appendChild(card);
-      } else if (item.category === 'thumbnail' && thumbGrid) {
-        card.innerHTML = `
-          <div class="item-media">
-            <img src="${item.mediaUrl}" alt="${localizedTitle || 'Thumbnail'}" loading="lazy">
-          </div>
-          <div class="item-title" title="${localizedTitle}">${localizedTitle || 'GRAPHIC_WORK_' + (index + 1)}</div>
-        `;
-
-        card.addEventListener('click', () => {
-          document.querySelectorAll('.gallery-item').forEach(c => c.classList.remove('selected'));
-          card.classList.add('selected');
-          if (typeof window.gtag === 'function') {
-            window.gtag('event', 'view_portfolio_item', {
-              'category': 'graphic',
-              'title': localizedTitle || item.title || 'GRAPHIC WORK'
-            });
-          }
-          openModal(localizedTitle || 'GRAPHIC WORK', `<img src="${item.mediaUrl}" alt="${localizedTitle}">`);
-        });
-
-        thumbGrid.appendChild(card);
-      }
-    });
+    renderCategoryContainer(pvGrid, 'pv', currentLang);
+    renderCategoryContainer(live2dGrid, 'live2d', currentLang);
+    renderCategoryContainer(thumbGrid, 'thumbnail', currentLang);
   }
 
+  // Initial render of portfolio galleries
   renderGalleries();
 
   if (window.i18n) {
