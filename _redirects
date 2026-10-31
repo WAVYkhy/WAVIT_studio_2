@@ -2,7 +2,6 @@
 /theme_sharp_desktop / 301
 /schedule/* https://schedule.wavit-studio.com/:splat 301
 /schedule https://schedule.wavit-studio.com 301
-/portfolio_embed /portfolio_embed.html 200
-/embed /embed.html 200
-/portfolio /portfolio_embed.html 200
-/sharp_embed /sharp_embed.html 200
+/portfolio /portfolio_embed 301
+/sharp_embed /portfolio_embed 301
+/embed /portfolio_embed 301
