@@ -1,2 +1,4 @@
 /theme_sharp_desktop.html / 301
 /theme_sharp_desktop / 301
+/schedule/* https://schedule.wavit-studio.com/:splat 301
+/schedule https://schedule.wavit-studio.com 301
