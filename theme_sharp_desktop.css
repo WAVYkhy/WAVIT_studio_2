@@ -420,6 +420,12 @@ body.is-dragging {
   color: #FFFFFF;
 }
 
+.win-control-btn svg {
+  display: block;
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
 /* Window Body Content Area */
 .os-window-body {
   flex: 1;
@@ -862,6 +868,15 @@ body.is-dragging {
   color: var(--text-primary);
   font-size: 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.sharp-modal-close svg {
+  display: block;
+  pointer-events: none;
 }
 
 .sharp-modal-body {

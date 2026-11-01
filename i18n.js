@@ -23,7 +23,7 @@ const I18N_TRANSLATIONS = {
     profile: {
       tagline: "MV Design.",
       bio: "문의는 메일, X 등 편하신 방법으로 부탁드립니다.",
-      copyEmail: "이메일 복사 (wkjnaver@gmail.com)",
+      copyEmail: "이메일 복사 (contact@wavit-studio.com)",
       copiedEmail: "이메일 주소가 클립보드에 복사되었습니다!"
     },
     portfolio: {
@@ -57,7 +57,7 @@ const I18N_TRANSLATIONS = {
     profile: {
       tagline: "MV Design.",
       bio: "お問い合わせはメール、Xなどご都合の良い方法でお願いいたします。",
-      copyEmail: "メールアドレスをコピー (wkjnaver@gmail.com)",
+      copyEmail: "メールアドレスをコピー (contact@wavit-studio.com)",
       copiedEmail: "メールアドレスをクリップボードにコピーしました！"
     },
     portfolio: {
@@ -91,7 +91,7 @@ const I18N_TRANSLATIONS = {
     profile: {
       tagline: "MV Design.",
       bio: "Please feel free to contact via email, X, or any preferred method.",
-      copyEmail: "COPY EMAIL (wkjnaver@gmail.com)",
+      copyEmail: "COPY EMAIL (contact@wavit-studio.com)",
       copiedEmail: "EMAIL COPIED TO CLIPBOARD!"
     },
     portfolio: {

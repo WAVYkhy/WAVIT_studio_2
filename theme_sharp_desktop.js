@@ -908,7 +908,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (copyEmailBtn) {
     copyEmailBtn.addEventListener('click', () => {
-      const email = 'wkjnaver@gmail.com';
+      const email = 'contact@wavit-studio.com';
       navigator.clipboard.writeText(email).then(() => {
         const copiedMsg = window.i18n ? window.i18n.get('profile.copiedEmail') : 'EMAIL COPIED TO CLIPBOARD.';
         showAlert(`${copiedMsg}<br><span style="font-size:12px; color:var(--text-muted);">Inquiries: ${email}</span>`);
