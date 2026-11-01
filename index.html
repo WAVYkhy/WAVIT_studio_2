@@ -118,6 +118,13 @@
             </div>
             <h1 class="profile-name-text">WAVIT_studio</h1>
             <div class="profile-tag-line" data-i18n="profile.tagline">MV Design.</div>
+
+            <!-- Profile In-Window Language Selector -->
+            <div class="lang-selector profile-lang-selector" role="group" aria-label="Language Selector">
+              <button type="button" class="lang-btn active" data-lang="ko" onclick="window.i18n.setLanguage('ko')">KR</button>
+              <button type="button" class="lang-btn" data-lang="ja" onclick="window.i18n.setLanguage('ja')">JP</button>
+              <button type="button" class="lang-btn" data-lang="en" onclick="window.i18n.setLanguage('en')">EN</button>
+            </div>
             
             <div class="profile-bio-box" data-i18n="profile.bio" data-i18n-html="true">
               문의는 메일, X 등 편하신 방법으로 부탁드립니다.
@@ -353,17 +360,6 @@
         </button>
       </div>
 
-      <div class="dock-divider" role="separator"></div>
-
-      <div class="dock-tray-group">
-        <!-- Language Selector -->
-        <div class="lang-selector" role="group" aria-label="Language Selector">
-          <button type="button" class="lang-btn" data-lang="ko" onclick="window.i18n.setLanguage('ko')">KR</button>
-          <button type="button" class="lang-btn" data-lang="ja" onclick="window.i18n.setLanguage('ja')">JP</button>
-          <button type="button" class="lang-btn" data-lang="en" onclick="window.i18n.setLanguage('en')">EN</button>
-        </div>
-        <div class="dock-clock-display" id="sys-clock">00:00:00</div>
-      </div>
     </nav>
 
   </div>

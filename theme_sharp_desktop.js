@@ -69,8 +69,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const timeStr = new Intl.DateTimeFormat('en-US', options).format(now);
     sysClock.textContent = `${timeStr} KST`;
   }
-  setInterval(updateClock, 1000);
-  updateClock();
+  if (sysClock) setInterval(updateClock, 1000);
+  if (sysClock) updateClock();
 
   // ==========================================
   // 3. Nordic Sharp Light Mode System (Light Mode Exclusive)
