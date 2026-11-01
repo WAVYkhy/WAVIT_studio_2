@@ -6,10 +6,10 @@ const I18N_TRANSLATIONS = {
   ko: {
     system: {
       booting: "NORDIC_SHARP /// OS 초기화 중...",
-      profileTitle: "[SYS.PROFILE] WAVIT_studio",
-      portfolioTitle: "[SYS.PORTFOLIO] 포트폴리오 아카이브",
-      scheduleTitle: "[SYS.SCHEDULE] 작업 일정 트래커",
-      quoteTitle: "[SYS.QUOTE] 커미션 단가표",
+      profileTitle: "PROFILE",
+      portfolioTitle: "PORTFOLIO",
+      scheduleTitle: "SCHEDULE",
+      quoteTitle: "QUOTE",
       mediaViewer: "미디어 뷰어",
       sysNotification: "시스템 알림",
       confirm: "확인"
@@ -23,7 +23,7 @@ const I18N_TRANSLATIONS = {
     profile: {
       tagline: "MV Design.",
       bio: "문의는 메일, X 등 편하신 방법으로 부탁드립니다.",
-      copyEmail: "이메일 복사 (contact@wavit-studio.com)",
+      copyEmail: "contact@wavit-studio.com",
       copiedEmail: "이메일 주소가 클립보드에 복사되었습니다!"
     },
     portfolio: {
@@ -40,10 +40,10 @@ const I18N_TRANSLATIONS = {
   ja: {
     system: {
       booting: "NORDIC_SHARP /// OS 初期化中...",
-      profileTitle: "[SYS.PROFILE] WAVIT_studio",
-      portfolioTitle: "[SYS.PORTFOLIO] ポートフォリオ アーカイブ",
-      scheduleTitle: "[SYS.SCHEDULE] 制作スケジュール",
-      quoteTitle: "[SYS.QUOTE] 依頼・料金表 Guide",
+      profileTitle: "PROFILE",
+      portfolioTitle: "PORTFOLIO",
+      scheduleTitle: "SCHEDULE",
+      quoteTitle: "QUOTE",
       mediaViewer: "メディアビューア",
       sysNotification: "システム通知",
       confirm: "確認"
@@ -57,7 +57,7 @@ const I18N_TRANSLATIONS = {
     profile: {
       tagline: "MV Design.",
       bio: "お問い合わせはメール、Xなどご都合の良い方法でお願いいたします。",
-      copyEmail: "メールアドレスをコピー (contact@wavit-studio.com)",
+      copyEmail: "contact@wavit-studio.com",
       copiedEmail: "メールアドレスをクリップボードにコピーしました！"
     },
     portfolio: {
@@ -74,10 +74,10 @@ const I18N_TRANSLATIONS = {
   en: {
     system: {
       booting: "NORDIC_SHARP /// INITIALIZING OS...",
-      profileTitle: "[SYS.PROFILE] WAVIT_studio",
-      portfolioTitle: "[SYS.PORTFOLIO] PORTFOLIO ARCHIVE",
-      scheduleTitle: "[SYS.SCHEDULE] WORK SCHEDULE TRACKER",
-      quoteTitle: "[SYS.QUOTE] COMMISSION PRICING GUIDE",
+      profileTitle: "PROFILE",
+      portfolioTitle: "PORTFOLIO",
+      scheduleTitle: "SCHEDULE",
+      quoteTitle: "QUOTE",
       mediaViewer: "MEDIA VIEWER",
       sysNotification: "SYSTEM NOTIFICATION",
       confirm: "CONFIRM"
@@ -91,7 +91,7 @@ const I18N_TRANSLATIONS = {
     profile: {
       tagline: "MV Design.",
       bio: "Please feel free to contact via email, X, or any preferred method.",
-      copyEmail: "COPY EMAIL (contact@wavit-studio.com)",
+      copyEmail: "contact@wavit-studio.com",
       copiedEmail: "EMAIL COPIED TO CLIPBOARD!"
     },
     portfolio: {
