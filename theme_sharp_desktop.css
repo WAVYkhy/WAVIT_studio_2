@@ -572,6 +572,12 @@ body.is-dragging {
   opacity: 0.85;
 }
 
+.email-copy-btn.copied {
+  background: var(--text-primary);
+  color: var(--bg-surface, #ffffff);
+  border-color: var(--text-primary);
+}
+
 .social-links-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

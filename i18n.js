@@ -34,7 +34,7 @@ const I18N_TRANSLATIONS = {
       watchYoutube: "유튜브에서 보기 ↗"
     },
     meta: {
-      description: "WAVIT_studio — MV Design. PV, MV, Live2D & Graphic Design Portfolio."
+      description: "WAVIT_studio — MV Design. PV, MV, Live2D & Graphic Designer."
     }
   },
   ja: {
@@ -68,7 +68,7 @@ const I18N_TRANSLATIONS = {
       watchYoutube: "YouTubeで見る ↗"
     },
     meta: {
-      description: "WAVIT_studio — MV Design. PV, MV, Live2D & グラフィックデザイン ポートフォリオ。"
+      description: "WAVIT_studio — MV Design. PV, MV, Live2D & グラフィックデザイナー。"
     }
   },
   en: {
@@ -102,7 +102,7 @@ const I18N_TRANSLATIONS = {
       watchYoutube: "WATCH ON YOUTUBE ↗"
     },
     meta: {
-      description: "WAVIT_studio — MV Design. PV, MV, Live2D & Graphic Design Portfolio. Contact & Commissions Available (KR / JP / EN)."
+      description: "WAVIT_studio — MV Design. PV, MV, Live2D & Graphic Designer. Contact & Commissions Available (KR / JP / EN)."
     }
   }
 };

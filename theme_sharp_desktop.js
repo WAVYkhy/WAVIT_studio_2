@@ -906,18 +906,83 @@ document.addEventListener('DOMContentLoaded', () => {
   if (closeAlertBox) closeAlertBox.addEventListener('click', hideAlert);
   if (confirmAlert) confirmAlert.addEventListener('click', hideAlert);
 
+  // Helper: Cross-platform, secure & insecure context robust clipboard copy
+  async function copyTextToClipboard(text) {
+    // 1. Try modern navigator.clipboard API if available and callable
+    if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+      try {
+        await navigator.clipboard.writeText(text);
+        return true;
+      } catch (err) {
+        console.warn('[Clipboard] navigator.clipboard.writeText failed, attempting execCommand fallback:', err);
+      }
+    }
+
+    // 2. Reliable Fallback: temporary textarea with document.execCommand('copy')
+    try {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.top = '-9999px';
+      textArea.style.left = '-9999px';
+      textArea.style.width = '2em';
+      textArea.style.height = '2em';
+      textArea.style.padding = '0';
+      textArea.style.border = 'none';
+      textArea.style.outline = 'none';
+      textArea.style.boxShadow = 'none';
+      textArea.style.background = 'transparent';
+      textArea.setAttribute('readonly', '');
+
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      textArea.setSelectionRange(0, textArea.value.length);
+
+      const successful = document.execCommand('copy');
+      document.body.removeChild(textArea);
+      if (successful) return true;
+    } catch (err) {
+      console.warn('[Clipboard] Fallback execCommand failed:', err);
+    }
+
+    return false;
+  }
+
   if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', () => {
+    const copyEmailBtnText = document.getElementById('copyEmailBtnText');
+    let resetTimer = null;
+
+    copyEmailBtn.addEventListener('click', async () => {
       const email = 'contact@wavit-studio.com';
-      navigator.clipboard.writeText(email).then(() => {
-        const copiedMsg = window.i18n ? window.i18n.get('profile.copiedEmail') : 'EMAIL COPIED TO CLIPBOARD.';
-        showAlert(`${copiedMsg}<br><span style="font-size:12px; color:var(--text-muted);">Inquiries: ${email}</span>`);
+      const isCopied = await copyTextToClipboard(email);
+
+      if (isCopied) {
+        const copiedMsg = window.i18n ? window.i18n.get('profile.copiedEmail') : '이메일 주소가 클립보드에 복사되었습니다!';
+        showAlert(`${copiedMsg}<br><span style="font-size:12px; color:var(--text-muted); display:inline-block; margin-top:6px;">${email}</span>`);
+
+        if (copyEmailBtnText) {
+          if (resetTimer) clearTimeout(resetTimer);
+          copyEmailBtnText.textContent = 'COPIED!';
+          copyEmailBtn.classList.add('copied');
+          resetTimer = setTimeout(() => {
+            copyEmailBtnText.textContent = window.i18n ? window.i18n.get('profile.copyEmail') : email;
+            copyEmailBtn.classList.remove('copied');
+          }, 2000);
+        }
+
         if (typeof window.gtag === 'function') {
           window.gtag('event', 'click_contact_email', { 'email_address': email });
         }
-      }).catch(() => {
+      } else {
+        const fallbackMsg = window.i18n && window.i18n.getCurrentLanguage() === 'ja'
+          ? 'クリップボードへのアクセスが制限されています。'
+          : (window.i18n && window.i18n.getCurrentLanguage() === 'en'
+            ? 'Clipboard access was restricted.'
+            : '클립보드 접근이 제한되었습니다.');
+        showAlert(`${fallbackMsg}<br><span style="font-size:13px; font-weight:600; color:var(--text-primary); display:inline-block; margin-top:4px;">${email}</span>`);
         window.location.href = `mailto:${email}`;
-      });
+      }
     });
   }
 
