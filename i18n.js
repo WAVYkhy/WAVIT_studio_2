@@ -113,15 +113,21 @@ class I18nEngine {
     this.defaultLanguage = 'en'; // Korean and Japanese supported; all other regions fallback to English
     this.currentLanguage = this.resolveInitialLanguage();
     this.listeners = [];
+    try {
+      console.log(`[i18n] Resolved language: ${this.currentLanguage} (locale: ${typeof navigator !== "undefined" ? navigator.language : "n/a"}, tz: ${Intl.DateTimeFormat().resolvedOptions().timeZone})`);
+    } catch (e) {}
   }
 
   /**
-   * Auto-Detect Language Hierarchy:
-   * 1. Explicit URL Query Parameter (?lang=ko, ?lang=ja, ?lang=en) - override / debugging
-   * 2. Browser Locale Auto-Detection (navigator.language):
+   * Robust Auto-Detect Language Hierarchy:
+   * 1. URL Query Parameter (?lang=ko, ?lang=ja, ?lang=en) - override / debugging
+   * 2. Browser Locale Candidates (navigator.languages array & navigator.language):
    *    - Korean ('ko' / 'ko-KR' / ...) -> 'ko'
    *    - Japanese ('ja' / 'ja-JP' / ...) -> 'ja'
-   *    - All other countries/languages -> 'en'
+   * 3. Timezone Heuristic (for visitors with English browser UI located in Korea/Japan):
+   *    - 'Asia/Seoul', 'Asia/Pyongyang', 'ROK' -> 'ko'
+   *    - 'Asia/Tokyo', 'Japan' -> 'ja'
+   * 4. All other countries/languages -> 'en'
    */
   resolveInitialLanguage() {
     // 1. URL parameter override (?lang=ko|ja|en)
@@ -135,20 +141,44 @@ class I18nEngine {
       // ignore when search is not available
     }
 
-    // 2. Automatic Visitor Language Detection
-    const rawLang = (typeof navigator !== "undefined"
-      ? (navigator.language || (navigator.languages && navigator.languages[0]) || navigator.userLanguage)
-      : "") || "";
-
-    const primaryLang = rawLang.split('-')[0].toLowerCase();
-    if (primaryLang === 'ko') {
-      return 'ko';
+    // 2. Candidate Browser Locales (navigator.languages and navigator.language)
+    const candidates = [];
+    if (typeof navigator !== "undefined") {
+      if (Array.isArray(navigator.languages)) {
+        candidates.push(...navigator.languages);
+      }
+      if (navigator.language) {
+        candidates.push(navigator.language);
+      }
+      if (navigator.userLanguage) {
+        candidates.push(navigator.userLanguage);
+      }
     }
-    if (primaryLang === 'ja') {
-      return 'ja';
+
+    for (const raw of candidates) {
+      if (!raw) continue;
+      const code = String(raw).split('-')[0].toLowerCase();
+      if (code === 'ko') return 'ko';
+      if (code === 'ja') return 'ja';
     }
 
-    // 3. Fallback for all other countries and languages: English
+    // 3. Timezone heuristic (essential when visitor browser UI is English)
+    try {
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+      if (tz) {
+        const lowerTz = tz.toLowerCase();
+        if (lowerTz.includes('seoul') || lowerTz === 'asia/pyongyang' || lowerTz === 'rok') {
+          return 'ko';
+        }
+        if (lowerTz.includes('tokyo') || lowerTz === 'japan') {
+          return 'ja';
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+
+    // 4. Fallback for all other countries and languages: English
     return 'en';
   }
 
