@@ -1111,32 +1111,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Mobile Floating Top Language Switcher Pill Handler
-  const mobileTopLangPill = document.getElementById('mobileTopLangPill');
-  const mobileLangPillBtn = document.getElementById('mobileLangPillBtn');
-  const mobileLangDropdown = document.getElementById('mobileLangDropdown');
-
-  if (mobileLangPillBtn && mobileTopLangPill) {
-    mobileLangPillBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      mobileTopLangPill.classList.toggle('active');
-    });
-
-    if (mobileLangDropdown) {
-      mobileLangDropdown.addEventListener('click', (e) => {
-        const item = e.target.closest('.lang-dropdown-item');
-        if (item) {
-          mobileTopLangPill.classList.remove('active');
-        }
-      });
-    }
-
-    document.addEventListener('click', (e) => {
-      if (!mobileTopLangPill.contains(e.target)) {
-        mobileTopLangPill.classList.remove('active');
-      }
-    });
-  }
 
 });
 

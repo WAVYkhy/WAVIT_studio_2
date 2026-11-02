@@ -107,44 +107,54 @@ const I18N_TRANSLATIONS = {
   }
 };
 
-class I18nEngine {
-  constructor() {
-    this.supportedLanguages = ['ko', 'ja', 'en'];
-    this.defaultLanguage = 'ko';
-    this.currentLanguage = this.resolveInitialLanguage();
-    this.listeners = [];
-  }
-
-  /**
-   * Resolution Hierarchy:
-   * 1. URL Query Parameter (?lang=ja or ?lang=ko or ?lang=en)
-   * 2. LocalStorage ('wavit_lang')
-   * 3. Browser Navigator Language (e.g. ja-JP -> ja, ko-KR -> ko)
-   * 4. Default Fallback ('ko')
-   */
-  resolveInitialLanguage() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const urlLang = urlParams.get('lang')?.toLowerCase();
-    if (urlLang && this.supportedLanguages.includes(urlLang)) {
-      localStorage.setItem('wavit_lang', urlLang);
-      return urlLang;
-    }
-
-    const savedLang = localStorage.getItem('wavit_lang')?.toLowerCase();
-    if (savedLang && this.supportedLanguages.includes(savedLang)) {
-      return savedLang;
-    }
-
-    const navLang = navigator.language || navigator.userLanguage;
-    if (navLang) {
-      const primaryLang = navLang.split('-')[0].toLowerCase();
-      if (this.supportedLanguages.includes(primaryLang)) {
-        return primaryLang;
-      }
-    }
-
-    return this.defaultLanguage;
-  }
+class I18nEngine {
+  constructor() {
+    this.supportedLanguages = ['ko', 'ja', 'en'];
+    this.defaultLanguage = 'en'; // Korean and Japanese supported; all other regions fallback to English
+    this.currentLanguage = this.resolveInitialLanguage();
+    this.listeners = [];
+  }
+
+  /**
+   * Auto-Detect Language Hierarchy:
+   * 1. Explicit URL Query Parameter (?lang=ko, ?lang=ja, ?lang=en) - override / debugging
+   * 2. Browser Locale Auto-Detection (navigator.language):
+   *    - Korean ('ko' / 'ko-KR' / ...) -> 'ko'
+   *    - Japanese ('ja' / 'ja-JP' / ...) -> 'ja'
+   *    - All other countries/languages -> 'en'
+   */
+  resolveInitialLanguage() {
+    // 1. URL parameter override (?lang=ko|ja|en)
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const urlLang = urlParams.get('lang')?.toLowerCase();
+      if (urlLang && this.supportedLanguages.includes(urlLang)) {
+        return urlLang;
+      }
+    } catch (e) {
+      // ignore when search is not available
+    }
+
+    // 2. Automatic Visitor Language Detection
+    const rawLang = (typeof navigator !== "undefined"
+      ? (navigator.language || (navigator.languages && navigator.languages[0]) || navigator.userLanguage)
+      : "") || "";
+
+    const primaryLang = rawLang.split('-')[0].toLowerCase();
+    if (primaryLang === 'ko') {
+      return 'ko';
+    }
+    if (primaryLang === 'ja') {
+      return 'ja';
+    }
+
+    // 3. Fallback for all other countries and languages: English
+    return 'en';
+  }
+
+  getCurrentLanguage() {
+    return this.currentLanguage;
+  }
 
   get(keyPath, params = {}) {
     const keys = keyPath.split('.');

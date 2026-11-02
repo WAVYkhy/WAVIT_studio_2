@@ -86,34 +86,6 @@
     }
 
     /* Embedded Language Switcher */
-    .embed-lang-group {
-      display: flex;
-      gap: 4px;
-      background: var(--nordic-surface-subtle);
-      padding: 3px;
-      border: 1px solid var(--nordic-border);
-      border-radius: var(--radius-sharp);
-    }
-
-    .embed-lang-group .lang-btn {
-      background: transparent;
-      border: none;
-      font-family: var(--font-mono);
-      font-size: 10px;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      padding: 4px 8px;
-      border-radius: var(--radius-sharp);
-      cursor: pointer;
-      transition: all 0.15s ease;
-    }
-
-    .embed-lang-group .lang-btn:hover,
-    .embed-lang-group .lang-btn.active {
-      background: var(--accent-surface);
-      color: var(--accent-text);
-    }
 
     /* Gallery Spacing inside Embed */
     .embed-wrapper .gallery-container {
@@ -165,12 +137,6 @@
         </nav>
       </div>
 
-      <!-- Language Selector -->
-      <div class="embed-lang-group" role="group" aria-label="Language Selector">
-        <button type="button" class="lang-btn active" data-lang="ko">KR</button>
-        <button type="button" class="lang-btn" data-lang="ja">JP</button>
-        <button type="button" class="lang-btn" data-lang="en">EN</button>
-      </div>
     </header>
 
     <!-- Consolidated Portfolio Galleries -->

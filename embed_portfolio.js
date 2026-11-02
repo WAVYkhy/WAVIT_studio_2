@@ -253,24 +253,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 8. Language Switcher (if present in header)
-  const langButtons = document.querySelectorAll('.lang-btn');
-  langButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const lang = btn.getAttribute('data-lang');
-      if (window.i18n && lang) {
-        window.i18n.setLanguage(lang);
-      }
-    });
-  });
-
   if (window.i18n) {
     window.i18n.onLanguageChange(() => {
       renderGalleries();
-      // Update active state of lang buttons
-      langButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-lang') === window.i18n.currentLanguage);
-      });
     });
   }
 
