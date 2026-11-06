@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- GitHub Pages to Custom Domain Instant Redirect -->
+  <link rel="canonical" href="https://wavit-studio.com/">
+  <script>
+    if (window.location.hostname === 'wavykhy.github.io') {
+      const sp = new URLSearchParams(window.location.search);
+      sp.set('nopromo', 'true');
+      window.location.replace('https://wavit-studio.com/?' + sp.toString() + window.location.hash);
+    }
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WAVIT_studio</title>

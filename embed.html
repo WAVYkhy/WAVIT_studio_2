@@ -2,6 +2,14 @@
 <html lang="ko" class="no-promo">
 
 <head>
+  <!-- GitHub Pages to Custom Domain Instant Redirect -->
+  <link rel="canonical" href="https://wavit-studio.com/embed.html">
+  <script>
+    if (window.location.hostname === 'wavykhy.github.io') {
+      var cleanPath = window.location.pathname.replace(/^\/WAVIT_studio_2/, '') || '/';
+      window.location.replace('https://wavit-studio.com' + cleanPath + window.location.search + window.location.hash);
+    }
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-B3RKCSSGB4"></script>
   <script>
